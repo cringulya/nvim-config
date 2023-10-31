@@ -74,8 +74,6 @@ require('lazy').setup({
     end,
   },
 
-  { 'tamago324/lir.nvim' },
-
   {
     'nvim-tree/nvim-tree.lua',
     config = function()
