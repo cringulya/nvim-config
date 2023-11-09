@@ -96,13 +96,6 @@ require('lazy').setup({
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
 
   {
-    'gelguy/wilder.nvim',
-    config = function()
-      require('plugins.wilder')
-    end,
-  },
-
-  {
     'christoomey/vim-tmux-navigator',
     event = 'VimEnter',
     config = function()

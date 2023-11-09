@@ -267,7 +267,7 @@ local servers = {
   'cssls', -- CSS
   'yamlls', -- YAML
   'cmake',
-  -- 'sourcekit',
+  'sourcekit',
   -- 'jedi_language_server',
   'pyright',
   'texlab',
