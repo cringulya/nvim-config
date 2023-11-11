@@ -1,7 +1,8 @@
 **kekis**
 
-**Dependencies** 
+**Dependencies**
 
 - Node.js
-- rg
+  - npm install -g neovim
+- ripgrep
 - fd
