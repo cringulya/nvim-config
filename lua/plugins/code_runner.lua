@@ -13,6 +13,7 @@ require('code_runner').setup({
   filetype = {
     java = 'cd $dir && javac $fileName && java $fileNameWithoutExt',
     python = 'python3 $dir/$fileName',
+    r = 'Rscript $dir/$fileName',
     typescript = 'deno run',
     rust = 'cd $dir && rustc $fileName && $dir/$fileNameWithoutExt',
     cpp = 'cd $dir && mkdir -p build && g++ -fsanitize=address -std=c++17 -Wall -Wextra -Wshadow -O2 -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',

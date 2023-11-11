@@ -63,7 +63,11 @@ require('lazy').setup({
 
   {
     'iamcco/markdown-preview.nvim',
-    build = 'cd app && yarn install',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
   },
 
   {
@@ -360,7 +364,7 @@ require('lazy').setup({
     {
       'nvim-treesitter/nvim-treesitter',
       event = 'CursorHold',
-      run = ':TSUpdate',
+      build = ':TSUpdate',
       config = function()
         require('plugins.treesitter')
       end,

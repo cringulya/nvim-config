@@ -120,7 +120,7 @@ db.setup({
         desc_hl = 'group',
         key = 'd',
         key_hl = 'group',
-        action = 'Telescope find_files cwd=~/.config/nvim',
+        action = 'Telescope find_files cwd=~/.config',
       },
     },
     footer = {},
