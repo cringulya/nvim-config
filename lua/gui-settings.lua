@@ -25,7 +25,7 @@ if vim.g.neovide then
   vim.keymap.set('n', '<D-->', function()
     change_scale_factor(1 / 1.10)
   end)
-  o
+
   vim.keymap.set('n', '<C-=>', function()
     change_scale_factor(1.10)
   end)
