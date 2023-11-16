@@ -30,7 +30,6 @@ nls.setup({
     --         '--arrow-parens=always',
     --     },
     -- }),
-    fmt.rustfmt,
     fmt.stylua,
     fmt.gofmt,
     fmt.zigfmt,
@@ -44,9 +43,6 @@ nls.setup({
     -- DIAGNOSTICS --
     -----------------
     dgn.shellcheck,
-    dgn.luacheck.with({
-      extra_args = { '--globals', 'vim', '--std', 'luajit' },
-    }),
     -- dgn.flake8,
     ------------------
     -- CODE ACTIONS --

@@ -1,5 +1,3 @@
-**kekis**
-
 **Dependencies**
 
 - Node.js

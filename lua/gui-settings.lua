@@ -1,9 +1,9 @@
 if vim.g.neovide then
-  vim.opt.guifont = { 'Iosevka Nerd Font Mono', 'h20' }
+  vim.opt.guifont = { 'Iosevka Nerd Font', 'h20' }
   vim.cmd([[
   au VimEnter,VimResume * set guicursor-=a:blinkwait5-blinkon5-blinkoff5
   ]])
-  vim.g.neovide_input_use_logo = true -- enable use of the logo (cmd) key
+
   vim.g.neovide_refresh_rate = 60
   vim.g.neovide_input_macos_alt_is_meta = false
   -- vim.g.neovide_fullscreen = 1
@@ -19,41 +19,62 @@ if vim.g.neovide then
   local change_scale_factor = function(delta)
     vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
   end
-  vim.keymap.set('n', '<D-=>', function()
-    change_scale_factor(1.10)
-  end)
-  vim.keymap.set('n', '<D-->', function()
-    change_scale_factor(1 / 1.10)
-  end)
-
-  vim.keymap.set('n', '<C-=>', function()
-    change_scale_factor(1.10)
-  end)
-  vim.keymap.set('n', '<C-->', function()
-    change_scale_factor(1 / 1.10)
-  end)
 
   vim.o.clipboard = ''
-  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
-  vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
-  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
-  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
-  vim.keymap.set('i', '<D-v>', '<c-r>+') -- Paste insert mode
-  vim.api.nvim_set_keymap(
-    '',
-    '<D-v>',
-    '+p<CR>',
-    { noremap = true, silent = true }
-  )
-  vim.api.nvim_set_keymap(
-    '!',
-    '<D-v>',
-    '<C-R>+',
-    { noremap = true, silent = true }
-  )
-  vim.cmd([[
-  tnoremap <expr> <D-v> '<C-\><C-N>"+pi'
-  ]])
+
+  if vim.fn.has('macunix') then
+    vim.g.neovide_input_use_logo = true -- enable use of the logo (cmd) key
+    vim.keymap.set('n', '<D-=>', function()
+      change_scale_factor(1.10)
+    end)
+    vim.keymap.set('n', '<D-->', function()
+      change_scale_factor(1 / 1.10)
+    end)
+    vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+    vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+    vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+    vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+    vim.keymap.set('i', '<D-v>', '<c-r>+') -- Paste insert mode
+    vim.api.nvim_set_keymap(
+      '',
+      '<D-v>',
+      '+p<CR>',
+      { noremap = true, silent = true }
+    )
+    vim.api.nvim_set_keymap(
+      '!',
+      '<D-v>',
+      '<C-R>+',
+      { noremap = true, silent = true }
+    )
+    vim.cmd([[ tnoremap <expr> <D-v> '<C-\><C-N>"+pi' ]])
+  else
+    vim.keymap.set('n', '<C-=>', function()
+      change_scale_factor(1.10)
+    end)
+    vim.keymap.set('n', '<C-->', function()
+      change_scale_factor(1 / 1.10)
+    end)
+
+    vim.keymap.set('v', '<C-c>', '"+y') -- Copy
+    vim.keymap.set('n', '<C-v>', '"+P') -- Paste normal mode
+    vim.keymap.set('v', '<C-v>', '"+P') -- Paste visual mode
+    vim.keymap.set('c', '<C-v>', '<C-R>+') -- Paste command mode
+    vim.keymap.set('i', '<C-v>', '<c-r>+') -- Paste insert mode
+    vim.api.nvim_set_keymap(
+      '',
+      '<C-v>',
+      '+p<CR>',
+      { noremap = true, silent = true }
+    )
+    vim.api.nvim_set_keymap(
+      '!',
+      '<C-v>',
+      '<C-R>+',
+      { noremap = true, silent = true }
+    )
+    vim.cmd([[ tnoremap <expr> <C-v> '<C-\><C-N>"+pi' ]])
+  end
 
   -- vim.api.nvim_set_keymap(
   --   't',
@@ -61,7 +82,7 @@ if vim.g.neovide then
   --   '<C-><C-N>"+pi',
   --   { noremap = true, silent = true }
   -- )
-  --
+
   vim.api.nvim_set_keymap(
     'v',
     '<D-v>',

@@ -58,7 +58,6 @@ require('lazy').setup({
     config = function()
       require('plugins.dashboard-nvim')
     end,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 
   {
@@ -98,6 +97,7 @@ require('lazy').setup({
   --------------------------
 
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
+  { 'nvim-tree/nvim-web-devicons' },
 
   {
     'christoomey/vim-tmux-navigator',
@@ -148,8 +148,13 @@ require('lazy').setup({
     'numToStr/Comment.nvim',
     event = 'BufRead',
     config = function()
-      require('Comment').setup()
+      require('Comment').setup({
+        pre_hook = require(
+          'ts_context_commentstring.integrations.comment_nvim'
+        ).create_pre_hook(),
+      })
     end,
+    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
   },
 
   {
@@ -165,7 +170,6 @@ require('lazy').setup({
 
   {
     'nvim-telescope/telescope.nvim',
-    event = 'CursorHold',
     config = function()
       require('plugins.telescope')
     end,
@@ -369,7 +373,6 @@ require('lazy').setup({
         require('plugins.treesitter')
       end,
       dependencies = {
-        { 'nvim-treesitter/playground' },
         { 'nvim-treesitter/nvim-treesitter-textobjects' },
         { 'nvim-treesitter/nvim-treesitter-refactor' },
         { 'windwp/nvim-ts-autotag' },

@@ -38,7 +38,7 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   },
   incremental_selection = {
-    enable = true,
+    enable = false,
     keymaps = {
       init_selection = 'gs',
       -- NOTE: These are visual mode mappings
@@ -50,7 +50,7 @@ require('nvim-treesitter.configs').setup({
   -- nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {
     select = {
-      enable = true,
+      enable = false,
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
       keymaps = {
@@ -75,7 +75,7 @@ require('nvim-treesitter.configs').setup({
       },
     },
     swap = {
-      enable = true,
+      enable = false,
       --   swap_next = {
       --     ['<leader>a'] = '@parameter.inner',
       --     ['<leader>f'] = '@function.outer',
@@ -88,7 +88,7 @@ require('nvim-treesitter.configs').setup({
       --   },
     },
     move = {
-      enable = true,
+      enable = false,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         [']f'] = '@function.outer',
@@ -112,16 +112,12 @@ require('nvim-treesitter.configs').setup({
   autotag = {
     enable = true,
   },
-  -- nvim-treesitter/playground
-  playground = {
-    enable = true,
-    disable = {},
-    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false, -- Whether the query persists across vim sessions
-  },
   -- nvim-treesitter/nvim-treesitter-refactor
   refactor = {
-    highlight_definitions = { enable = true },
+    highlight_definitions = {
+      enable = true,
+      clear_on_cursor_move = true,
+    },
     -- highlight_current_scope = { enable = false },
   },
   context_commentstring = {
