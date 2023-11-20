@@ -92,7 +92,7 @@ o.foldminlines = 1
 
 -- Map <leader> to space
 g.mapleader = ' '
-g.maplocalleader = ' '
+g.maplocalleader = '\\'
 
 vim.cmd([[
   set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ

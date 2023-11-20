@@ -70,6 +70,32 @@ require('lazy').setup({
   },
 
   {
+    'nvim-neorg/neorg',
+    build = ':Neorg sync-parsers',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('neorg').setup({
+        load = {
+          ['core.defaults'] = {}, -- Loads default behaviour
+          ['core.concealer'] = {}, -- Adds pretty icons to your documents
+          ['core.dirman'] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = '~/notes',
+              },
+            },
+          },
+          ['core.completion'] = {
+            config = {
+              engine = 'nvim-cmp',
+            },
+          },
+        },
+      })
+    end,
+  },
+
+  {
     'nvim-lualine/lualine.nvim',
     event = 'BufEnter',
     config = function()
@@ -108,13 +134,14 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'BufRead',
-    config = function()
-      require('plugins.indentline')
-    end,
-  },
+  -- {
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   event = 'BufRead',
+  --   main = 'ibl',
+  --   config = function()
+  --     require('ibl').setup()
+  --   end,
+  -- },
 
   {
     'norcalli/nvim-colorizer.lua',

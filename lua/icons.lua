@@ -48,7 +48,7 @@ return {
     FileUntracked = 'U',
     Diff = '',
     Repo = '',
-    Octoface = '',
+    Octoface = ' ',
     Branch = '',
   },
   ui = {
