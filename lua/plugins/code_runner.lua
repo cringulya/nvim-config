@@ -2,13 +2,13 @@ vim.keymap.set('n', '`<cr>', ':RunCode<CR>', { noremap = true, silent = true })
 
 require('code_runner').setup({
   -- mode = 'toggleterm',
-  mode = 'toggle',
+  mode = 'tab',
   float = {
     border = 'rounded',
     height = 1,
     width = 1,
   },
-  startinsert = true,
+  startinsert = false,
   -- put here the commands by filetype
   filetype = {
     java = 'cd $dir && javac $fileName && java $fileNameWithoutExt',
