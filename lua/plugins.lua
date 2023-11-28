@@ -404,7 +404,6 @@ require('lazy').setup({
         { 'nvim-treesitter/nvim-treesitter-refactor' },
         { 'windwp/nvim-ts-autotag' },
         { 'JoosepAlviste/nvim-ts-context-commentstring' },
-        { 'p00f/nvim-ts-rainbow' },
       },
     },
   },
