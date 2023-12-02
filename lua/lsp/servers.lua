@@ -78,7 +78,12 @@ lsp.clangd.setup({
   on_attach = function(client, buf)
     navic.attach(client, buf)
     U.mappings(buf)
-    vim.keymap.set('n', '<leader>lh', '<cmd>ClangdSwitchSourceHeader<cr>', {buffer = buf})
+    vim.keymap.set(
+      'n',
+      '<leader>lh',
+      '<cmd>ClangdSwitchSourceHeader<cr>',
+      { buffer = buf }
+    )
     U.fmt_on_save(client, buf)
     local orig_rpc_request = client.rpc.request
     function client.rpc.request(method, params, handler, ...)

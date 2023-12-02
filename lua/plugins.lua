@@ -27,6 +27,17 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'ellisonleao/gruvbox.nvim',
+    priority = 1000,
+    config = function()
+      require('gruvbox').setup({
+        contrast = 'hard',
+        transparent_mode = true,
+      })
+    end,
+  },
+
   { 'numToStr/Sakura.nvim' },
 
   { 'folke/neodev.nvim', lazy = true },
@@ -351,9 +362,9 @@ require('lazy').setup({
     'andymass/vim-matchup',
     event = 'BufRead',
     config = function()
-      vim.keymap.set({ 'n', 'x', 'o' }, '<TAB>', '<plug>(matchup-%)')
-      vim.keymap.set({ 'x', 'o' }, 'i<TAB>', '<plug>(matchup-i%)')
-      vim.keymap.set({ 'x', 'o' }, 'o<TAB>', '<plug>(matchup-o%)')
+      vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', '<plug>(matchup-%)')
+      -- vim.keymap.set({ 'x', 'o' }, 'i<tab>', '<plug>(matchup-i%)')
+      -- vim.keymap.set({ 'x', 'o' }, 'o<tab>', '<plug>(matchup-o%)')
       vim.g.matchup_override_vimtex = 1
     end,
   },
