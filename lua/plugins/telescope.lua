@@ -29,7 +29,7 @@ require('telescope').setup({
       layout_strategy = 'bottom_pane',
       sort_mru = true,
       sort_lastused = true,
-      ignore_current_buffer = false,
+      ignore_current_buffer = true,
       previewer = true,
       prompt_title = false,
       layout_config = {
@@ -65,7 +65,7 @@ local Telescope = setmetatable({}, {
 
 -- Ctrl-p = fuzzy finder
 vim.keymap.set('n', '<leader>f', function()
-  local ok = pcall(Telescope.git_files, { show_untracked = true })
+  local ok = pcall(Telescope.git_files, { show_untracked = false })
   if not ok then
     Telescope.find_files()
   end

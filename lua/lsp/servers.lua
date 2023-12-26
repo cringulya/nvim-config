@@ -23,6 +23,9 @@ local function on_attach(client, buf)
     navic.attach(client, buf)
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   end
+  require('lsp_signature').on_attach({
+    hint_prefix = ' ',
+  })
 
   U.disable_formatting(client)
   U.mappings(buf)
@@ -78,6 +81,9 @@ lsp.clangd.setup({
   on_attach = function(client, buf)
     navic.attach(client, buf)
     U.mappings(buf)
+    require('lsp_signature').on_attach({
+      hint_prefix = ' ',
+    })
     vim.keymap.set(
       'n',
       '<leader>lh',

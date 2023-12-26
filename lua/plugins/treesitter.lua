@@ -2,6 +2,8 @@
 vim.o.foldmethod = 'expr'
 vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 89
+vim.g.skip_ts_context_commentstring_module = true
+
 
 require('nvim-treesitter.configs').setup({
   -- nvim-treesitter/nvim-treesitter (self config)
@@ -120,11 +122,11 @@ require('nvim-treesitter.configs').setup({
     },
     -- highlight_current_scope = { enable = false },
   },
-  context_commentstring = {
-    enable = true,
-    enable_autocmd = false,
-  },
   matchup = {
     enable = true,
   },
 })
+
+require('ts_context_commentstring').setup{
+  enable_autocmd = false;
+}
