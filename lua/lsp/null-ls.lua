@@ -32,6 +32,7 @@ nls.setup({
     -- }),
     fmt.stylua,
     fmt.gofmt,
+    fmt.nixpkgs_fmt,
     fmt.zigfmt,
     fmt.black.with({
       extra_args = { '--preview' },

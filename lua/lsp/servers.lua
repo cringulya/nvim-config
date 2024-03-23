@@ -264,6 +264,7 @@ local servers = {
   -- 'jedi_language_server',
   'pyright',
   'texlab',
+  'nil_ls',
   'dockerls',
   'marksman',
   -- 'terraformls', -- Terraform
