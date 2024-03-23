@@ -1,5 +1,6 @@
 local M = {}
 local icons = require('icons')
+
 M.config = {
   ---@usage disable which-key completely [not recommended]
   setup = {
@@ -82,13 +83,30 @@ M.config = {
   },
   mappings = {
     [';'] = { '<cmd>Dashboard<CR>', 'Dashboard' },
-    ['w'] = { '<cmd>w!<CR>', 'Save' },
-    ['f'] = { '<cmd>Telescope git_files<cr>', 'Telescope git files' },
+    f = {
+      function()
+        local ok = pcall(
+          require('telescope.builtin').git_files,
+          { show_untracked = false }
+        )
+        if not ok then
+          require('telescope.builtin').find_files()
+        end
+      end,
+      'Telescope files',
+    },
+    H = { require('telescope.builtin').help_tags, 'Help' },
+    [','] = { require('telescope.builtin').buffers, 'Buffers' },
     ['/'] = {
       '<Plug>(comment_toggle_linewise_current)',
       'Comment toggle current line',
     },
-    ['h'] = { '<cmd>nohlsearch<CR>', 'No Highlight' },
+    h = { '<cmd>nohlsearch<CR>', 'No Highlight' },
+    ["'"] = {
+      name = 'search more',
+      r = { require('telescope.builtin').live_grep, 'Grep' },
+      c = { require('telescope.builtin').git_status, 'Changed git files' },
+    },
     b = {
       name = 'Buffers',
       j = { '<cmd>BufferLinePick<cr>', 'Jump' },
@@ -117,22 +135,22 @@ M.config = {
     d = {
       name = 'Debug',
       t = {
-        "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
+        require('dap').toggle_breakpoint,
         'Toggle Breakpoint',
       },
-      b = { "<cmd>lua require'dap'.step_back()<cr>", 'Step Back' },
-      c = { "<cmd>lua require'dap'.continue()<cr>", 'Continue' },
-      C = { "<cmd>lua require'dap'.run_to_cursor()<cr>", 'Run To Cursor' },
-      d = { "<cmd>lua require'dap'.disconnect()<cr>", 'Disconnect' },
-      g = { "<cmd>lua require'dap'.session()<cr>", 'Get Session' },
-      i = { "<cmd>lua require'dap'.step_into()<cr>", 'Step Into' },
-      o = { "<cmd>lua require'dap'.step_over()<cr>", 'Step Over' },
-      u = { "<cmd>lua require'dap'.step_out()<cr>", 'Step Out' },
-      p = { "<cmd>lua require'dap'.pause()<cr>", 'Pause' },
-      r = { "<cmd>lua require'dap'.repl.toggle()<cr>", 'Toggle Repl' },
-      s = { "<cmd>lua require'dap'.continue()<cr>", 'Start' },
-      q = { "<cmd>lua require'dap'.close()<cr>", 'Quit' },
-      U = { "<cmd>lua require'dapui'.toggle()<cr>", 'Toggle UI' },
+      b = { require('dap').step_back, 'Step Back' },
+      c = { require('dap').continue, 'Continue' },
+      C = { require('dap').run_to_cursor, 'Run To Cursor' },
+      d = { require('dap').disconnect, 'Disconnect' },
+      g = { require('dap').session, 'Get Session' },
+      i = { require('dap').step_into, 'Step Into' },
+      o = { require('dap').step_over, 'Step Over' },
+      u = { require('dap').step_out, 'Step Out' },
+      p = { require('dap').pause, 'Pause' },
+      r = { require('dap').repl.toggle, 'Toggle Repl' },
+      s = { require('dap').continue, 'Start' },
+      q = { require('dap').close, 'Quit' },
+      U = { require('dapui').toggle, 'Toggle UI' },
     },
 
     -- " Available Debug Adapters:

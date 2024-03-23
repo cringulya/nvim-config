@@ -25,7 +25,6 @@ require('project_nvim').setup({
     '>sandbox',
     '>sonartem',
     '>artemson',
-    '>modumlab',
     '>notes',
     '_darcs',
     '.hg',
@@ -37,6 +36,7 @@ require('project_nvim').setup({
     'requirements.txt',
     'main.py',
     'neovim.json',
+    'flake.nix'
   },
 
   ---@ Show hidden files in telescope when searching for files in a project
