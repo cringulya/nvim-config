@@ -27,10 +27,11 @@ require('luasnip').filetype_extend(
   { 'javascriptreact', 'typescriptreact' }
 )
 
+
 -- Mappins to move around inside snippets
-vim.keymap.set({ 'i', 's' }, '<c-l>', '<CMD>lua require("luasnip").jump(1)<CR>')
+vim.keymap.set({ 'i', 's', 'v' }, '<c-l>', '<CMD>lua require("luasnip").jump(1)<CR>')
 vim.keymap.set(
-  { 'i', 's' },
+  { 'i', 's', 'v' },
   '<c-h>',
   '<CMD>lua require("luasnip").jump(-1)<CR>'
 )

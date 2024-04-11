@@ -371,10 +371,10 @@ require('lazy').setup({
   },
 
   {
-    'Shatur/neovim-cmake',
+    'Shatur/neovim-tasks',
     config = function()
-      require('plugins.neovim-cmake')
-    end,
+      require('plugins.neovim-tasks')
+    end
   },
 
   { 'ianding1/leetcode.vim' },
