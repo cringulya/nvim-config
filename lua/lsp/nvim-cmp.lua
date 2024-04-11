@@ -1,33 +1,6 @@
 local cmp = require('cmp')
 
-local icons = {
-  Text = '',
-  Method = '',
-  Function = '',
-  Constructor = '',
-  Field = 'ﰠ',
-  Variable = '',
-  Class = 'ﴯ',
-  Interface = '',
-  Module = '',
-  Property = 'ﰠ',
-  Unit = '塞',
-  Value = '',
-  Enum = '',
-  Keyword = '',
-  Snippet = '',
-  Color = '',
-  File = '',
-  Reference = '',
-  Folder = '',
-  EnumMember = '',
-  Constant = '',
-  Struct = 'פּ',
-  Event = '',
-  Operator = '',
-  TypeParameter = '',
-}
-
+local icons = require('icons')
 local aliases = {
   nvim_lsp = 'lsp',
 }
@@ -95,7 +68,7 @@ cmp.setup({
   formatting = {
     format = function(entry, item)
       -- Kind icons
-      item.kind = string.format('%s %s', icons[item.kind], item.kind)
+      -- item.kind = icons.kind[item.kind]
       -- Source
       item.menu =
         string.format('[%s]', aliases[entry.source.name] or entry.source.name)

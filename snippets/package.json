@@ -19,6 +19,13 @@
           "cpp"
         ],
         "path": "./cpp.json"
+      },
+      {
+        "language": [
+          "latex"
+        ],
+        "path": "./latex.json"
+
       }
     ]
   }

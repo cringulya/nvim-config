@@ -383,7 +383,7 @@ require('lazy').setup({
     'andymass/vim-matchup',
     event = 'BufRead',
     config = function()
-      vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', '<plug>(matchup-%)')
+      -- vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', '<plug>(matchup-%)')
       -- vim.keymap.set({ 'x', 'o' }, 'i<tab>', '<plug>(matchup-i%)')
       -- vim.keymap.set({ 'x', 'o' }, 'o<tab>', '<plug>(matchup-o%)')
       vim.g.matchup_override_vimtex = 1
@@ -408,14 +408,12 @@ require('lazy').setup({
 
   {
     'lervag/vimtex',
-    ft = 'tex',
     config = function()
-      vim.cmd([[
-        let g:vimtex_mappings_prefix = '\l'
-        let g:vimtex_compiler_latexmk = {
-            \ 'build_dir' : './tex-build',
-        \}
-      ]])
+      vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex' }
+      vim.g.vimtex_view_method = 'zathura'
+      vim.g.vimtex_compiler_latexmk = {
+        out_dir = './build/',
+      }
     end,
   },
 

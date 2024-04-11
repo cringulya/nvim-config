@@ -19,7 +19,7 @@ nls.setup({
     -- 2. prettierd should come first to prevent occassional race condition
     fmt.prettier,
     fmt.latexindent.with({
-      extra_args = { '-c', '~/.local/share/nvim/mason/packages/latexindent/' },
+      extra_args = { '-g', '/dev/null' },
     }),
     fmt.eslint_d,
     -- fmt.prettier.with({
