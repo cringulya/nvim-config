@@ -4,6 +4,17 @@ vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 89
 vim.g.skip_ts_context_commentstring_module = true
 
+local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set(
+  { 'n', 'x', 'o' },
+  '[[',
+  ts_repeat_move.repeat_last_move_previous
+)
+
 require('nvim-treesitter.configs').setup({
   -- nvim-treesitter/nvim-treesitter (self config)
   auto_install = true,
@@ -42,11 +53,10 @@ require('nvim-treesitter.configs').setup({
   incremental_selection = {
     enable = true,
     keymaps = {
-      init_selection = 'ta',
+      init_selection = "'v",
       -- NOTE: These are visual mode mappings
-      node_incremental = 'ta',
-      node_decremental = 'ti',
-      scope_incremental = 'ts',
+      node_incremental = "'v",
+      node_decremental = "'V",
     },
   },
   -- nvim-treesitter/nvim-treesitter-textobjects
@@ -79,34 +89,38 @@ require('nvim-treesitter.configs').setup({
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
-        ['<leader>f'] = '@function.outer',
-        ['<leader>e'] = '@element',
+        ["'a"] = '@parameter.inner',
+        ["'f"] = '@function.outer',
+        ["'e"] = '@element',
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
-        ['<leader>F'] = '@function.outer',
-        ['<leader>E'] = '@element',
+        ["'A"] = '@parameter.inner',
+        ["'F"] = '@function.outer',
+        ["'E"] = '@element',
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
+        [']a'] = '@parameter.outer',
         [']f'] = '@function.outer',
-        [']]'] = '@class.outer',
+        [']c'] = '@class.outer',
       },
       goto_next_end = {
+        [']A'] = '@parameter.outer',
         [']F'] = '@function.outer',
-        [']['] = '@class.outer',
+        [']C'] = '@class.outer',
       },
       goto_previous_start = {
+        ['[a'] = '@parameter.outer',
         ['[f'] = '@function.outer',
-        ['[['] = '@class.outer',
+        ['[c'] = '@class.outer',
       },
       goto_previous_end = {
+        ['[A'] = '@parameter.outer',
         ['[F'] = '@function.outer',
-        ['[]'] = '@class.outer',
+        ['[C'] = '@class.outer',
       },
     },
   },
