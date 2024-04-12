@@ -16,29 +16,24 @@ require('lazy').setup({
     'folke/tokyonight.nvim',
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      -- load the colorscheme here
-      require('tokyonight').setup({
-        style = 'night',
-        on_colors = function(colors)
-          colors.border = '#FFA500'
-        end,
-      })
-    end,
+    opts = {
+      style = 'night',
+      on_colors = function(colors)
+        colors.border = '#FFA500'
+      end,
+    },
   },
 
   {
     'ellisonleao/gruvbox.nvim',
     priority = 1000,
-    config = function()
-      require('gruvbox').setup({
-        contrast = 'hard',
-        transparent_mode = true,
-      })
-    end,
+    opts = {
+      contrast = 'hard',
+      transparent_mode = true,
+    },
   },
 
-  { 'numToStr/Sakura.nvim' },
+  { 'numToStr/Sakura.nvim', priority = 1000 },
 
   { 'folke/neodev.nvim', lazy = true },
 
@@ -52,6 +47,7 @@ require('lazy').setup({
 
   {
     'nvim-lua/plenary.nvim',
+    lazy = true,
     dependencies = {
       {
         'CRAG666/code_runner.nvim',
@@ -74,6 +70,7 @@ require('lazy').setup({
   {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    lazy = true,
     ft = { 'markdown' },
     build = function()
       vim.fn['mkdp#util#install']()
@@ -83,32 +80,32 @@ require('lazy').setup({
   {
     'nvim-neorg/neorg',
     build = ':Neorg sync-parsers',
+    event = 'VeryLazy',
+    ft = 'norg',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('neorg').setup({
-        load = {
-          ['core.defaults'] = {}, -- Loads default behaviour
-          ['core.concealer'] = {}, -- Adds pretty icons to your documents
-          ['core.dirman'] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = '~/notes',
-              },
-            },
-          },
-          ['core.completion'] = {
-            config = {
-              engine = 'nvim-cmp',
+    opts = {
+      load = {
+        ['core.defaults'] = {}, -- Loads default behaviour
+        ['core.concealer'] = {}, -- Adds pretty icons to your documents
+        ['core.dirman'] = { -- Manages Neorg workspaces
+          config = {
+            workspaces = {
+              notes = '~/notes',
             },
           },
         },
-      })
-    end,
+        ['core.completion'] = {
+          config = {
+            engine = 'nvim-cmp',
+          },
+        },
+      },
+    },
   },
 
   {
     'nvim-lualine/lualine.nvim',
-    event = 'BufEnter',
+    event = 'BufRead',
     config = function()
       require('plugins.lualine').setup()
     end,
@@ -116,6 +113,7 @@ require('lazy').setup({
 
   {
     'nvim-tree/nvim-tree.lua',
+    event = 'VimEnter',
     config = function()
       require('plugins.nvim-tree')
     end,
@@ -123,10 +121,8 @@ require('lazy').setup({
 
   {
     'karb94/neoscroll.nvim',
-    event = 'WinScrolled',
-    config = function()
-      require('neoscroll').setup({ hide_cursor = false })
-    end,
+    event = 'BufEnter',
+    opts = { hide_cursor = false },
   },
 
   --------------------------
@@ -134,7 +130,7 @@ require('lazy').setup({
   --------------------------
 
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
-  { 'nvim-tree/nvim-web-devicons' },
+  { 'nvim-tree/nvim-web-devicons', lazy = true },
 
   {
     'christoomey/vim-tmux-navigator',
@@ -157,9 +153,6 @@ require('lazy').setup({
   {
     'norcalli/nvim-colorizer.lua',
     event = 'CursorHold',
-    config = function()
-      require('colorizer').setup()
-    end,
   },
 
   {
@@ -172,6 +165,7 @@ require('lazy').setup({
 
   {
     'tpope/vim-fugitive',
+    event = 'BufRead',
   },
 
   {
@@ -192,7 +186,12 @@ require('lazy').setup({
         ).create_pre_hook(),
       })
     end,
-    dependencies = { 'JoosepAlviste/nvim-ts-context-commentstring' },
+    dependencies = {
+      'JoosepAlviste/nvim-ts-context-commentstring',
+      opts = {
+        enable_autocmd = false,
+      },
+    },
   },
 
   {
@@ -232,38 +231,19 @@ require('lazy').setup({
     },
   },
 
-  --------------
-  -- Terminal --
-  --------------
-
-  -- {
-  --   'akinsho/toggleterm.nvim',
-  --   config = function()
-  --     require('plugins.term')
-  --   end,
-  -- },
-
-  -----------------------------------
-  -- LSP, Completions and Snippets --
-  -----------------------------------
-
   {
     'williamboman/mason.nvim',
+    event = 'VeryLazy',
     dependencies = {
       {
         'williamboman/mason-lspconfig.nvim',
-        config = function()
-          require('mason-lspconfig').setup()
-        end,
       },
     },
-    config = function()
-      require('mason').setup()
-    end,
   },
 
   {
     'SmiteshP/nvim-navic',
+    event = 'BufRead',
     config = function()
       require('plugins.breadcrumps').setup()
     end,
@@ -272,15 +252,11 @@ require('lazy').setup({
   {
     'ray-x/lsp_signature.nvim',
     event = 'VeryLazy',
-    opts = {},
-    config = function(_, opts)
-      require('lsp_signature').setup(opts)
-    end,
+    lazy = true,
   },
 
   {
     'neovim/nvim-lspconfig',
-    event = 'BufRead',
     dependencies = {
       { 'hrsh7th/cmp-nvim-lsp' },
     },
@@ -338,46 +314,45 @@ require('lazy').setup({
 
   {
     'AckslD/swenv.nvim',
-    config = function()
-      require('swenv').setup({
-        -- Should return a list of tables with a `name` and a `path` entry each.
-        -- Gets the argument `venvs_path` set below.
-        -- By default just lists the entries in `venvs_path`.
-        get_venvs = function(venvs_path)
-          return require('swenv.api').get_venvs(venvs_path)
-        end,
-        -- Path passed to `get_venvs`.
-        venvs_path = vim.fn.expand('~/.virtualenvs'),
-        -- Something to do after setting an environment
-        post_set_venv = function()
-          vim.cmd([[
+    ft = 'py',
+    opts = {
+      -- Should return a list of tables with a `name` and a `path` entry each.
+      -- Gets the argument `venvs_path` set below.
+      -- By default just lists the entries in `venvs_path`.
+      get_venvs = function(venvs_path)
+        return require('swenv.api').get_venvs(venvs_path)
+      end,
+      -- Path passed to `get_venvs`.
+      venvs_path = vim.fn.expand('~/.virtualenvs'),
+      -- Something to do after setting an environment
+      post_set_venv = function()
+        vim.cmd([[
           :LspRestart<cr>
           ]])
-        end,
-      })
-    end,
+      end,
+    },
   },
 
-  { 'mfussenegger/nvim-dap' },
+  { 'mfussenegger/nvim-dap', event = 'VeryLazy' },
 
   {
     'rcarriga/nvim-dap-ui',
+    event = 'VeryLazy',
     dependencies = { 'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio' },
-    config = function()
-      require('neodev').setup({
-        library = { plugins = { 'nvim-dap-ui' }, types = true },
-      })
-    end,
+    opts = {
+      library = { plugins = { 'nvim-dap-ui' }, types = true },
+    },
   },
 
   {
     'Shatur/neovim-tasks',
+    ft = { 'cpp', 'cmake' },
     config = function()
       require('plugins.neovim-tasks')
-    end
+    end,
   },
 
-  { 'ianding1/leetcode.vim' },
+  { 'ianding1/leetcode.vim', event = 'VeryLazy' },
 
   {
     'andymass/vim-matchup',
@@ -392,15 +367,16 @@ require('lazy').setup({
 
   {
     'akinsho/bufferline.nvim',
+    event = 'CursorHold',
     config = function()
       require('plugins.bufferline')
     end,
     branch = 'main',
-    event = 'BufWinEnter',
   },
 
   {
     'RRethy/vim-illuminate',
+    event = 'BufEnter',
     config = function()
       require('plugins.illuminate')
     end,
@@ -408,6 +384,7 @@ require('lazy').setup({
 
   {
     'lervag/vimtex',
+    ft = 'tex',
     config = function()
       vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex' }
       vim.g.vimtex_view_method = 'zathura'
@@ -424,7 +401,7 @@ require('lazy').setup({
   {
     {
       'nvim-treesitter/nvim-treesitter',
-      event = 'CursorHold',
+      event = 'BufEnter',
       build = ':TSUpdate',
       config = function()
         require('plugins.treesitter')

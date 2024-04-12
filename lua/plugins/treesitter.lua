@@ -4,7 +4,6 @@ vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 vim.o.foldlevelstart = 89
 vim.g.skip_ts_context_commentstring_module = true
 
-
 require('nvim-treesitter.configs').setup({
   -- nvim-treesitter/nvim-treesitter (self config)
   auto_install = true,
@@ -27,6 +26,7 @@ require('nvim-treesitter.configs').setup({
     'vim',
     'python',
     'typescript',
+    'hlsl',
   },
   highlight = {
     enable = true,
@@ -34,25 +34,25 @@ require('nvim-treesitter.configs').setup({
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = {
     enable = true,
   },
   incremental_selection = {
-    enable = false,
+    enable = true,
     keymaps = {
-      init_selection = 'gs',
+      init_selection = 'ta',
       -- NOTE: These are visual mode mappings
-      node_incremental = 'gs',
-      node_decremental = 'gS',
-      scope_incremental = '<leader>gc',
+      node_incremental = 'ta',
+      node_decremental = 'ti',
+      scope_incremental = 'ts',
     },
   },
   -- nvim-treesitter/nvim-treesitter-textobjects
   textobjects = {
     select = {
-      enable = false,
+      enable = true,
       -- Automatically jump forward to textobj, similar to targets.vim
       lookahead = true,
       keymaps = {
@@ -77,20 +77,20 @@ require('nvim-treesitter.configs').setup({
       },
     },
     swap = {
-      enable = false,
-      --   swap_next = {
-      --     ['<leader>a'] = '@parameter.inner',
-      --     ['<leader>f'] = '@function.outer',
-      --     ['<leader>e'] = '@element',
-      --   },
-      --   swap_previous = {
-      --     ['<leader>A'] = '@parameter.inner',
-      --     ['<leader>F'] = '@function.outer',
-      --     ['<leader>E'] = '@element',
-      --   },
+      enable = true,
+      swap_next = {
+        ['<leader>a'] = '@parameter.inner',
+        ['<leader>f'] = '@function.outer',
+        ['<leader>e'] = '@element',
+      },
+      swap_previous = {
+        ['<leader>A'] = '@parameter.inner',
+        ['<leader>F'] = '@function.outer',
+        ['<leader>E'] = '@element',
+      },
     },
     move = {
-      enable = false,
+      enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
         [']f'] = '@function.outer',
@@ -126,7 +126,3 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   },
 })
-
-require('ts_context_commentstring').setup{
-  enable_autocmd = false;
-}
