@@ -267,6 +267,7 @@ local servers = {
   'nil_ls',
   'dockerls',
   'marksman',
+  'julials',
   -- 'terraformls', -- Terraform
 }
 
