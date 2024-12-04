@@ -36,7 +36,7 @@ require('project_nvim').setup({
     'requirements.txt',
     'main.py',
     'neovim.json',
-    'flake.nix'
+    'flake.nix',
   },
 
   ---@ Show hidden files in telescope when searching for files in a project

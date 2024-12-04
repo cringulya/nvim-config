@@ -5,8 +5,7 @@ require('gitsigns').setup({
     local gs = package.loaded.gitsigns
     local opts = { buffer = buf, expr = true, replace_keycodes = false }
 
-    -- Navigation
-    map('n', ']c', "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", opts)
+    -- Navigation  map('n', ']c', "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", opts)
     map('n', '[c', "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", opts)
 
     -- Actions

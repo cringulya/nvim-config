@@ -78,32 +78,6 @@ require('lazy').setup({
   },
 
   {
-    'nvim-neorg/neorg',
-    build = ':Neorg sync-parsers',
-    event = 'VeryLazy',
-    ft = 'norg',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = {
-      load = {
-        ['core.defaults'] = {}, -- Loads default behaviour
-        ['core.concealer'] = {}, -- Adds pretty icons to your documents
-        ['core.dirman'] = { -- Manages Neorg workspaces
-          config = {
-            workspaces = {
-              notes = '~/notes',
-            },
-          },
-        },
-        ['core.completion'] = {
-          config = {
-            engine = 'nvim-cmp',
-          },
-        },
-      },
-    },
-  },
-
-  {
     'nvim-lualine/lualine.nvim',
     event = 'BufRead',
     config = function()
@@ -129,7 +103,24 @@ require('lazy').setup({
   -- Editor UI Niceties --
   --------------------------
 
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    opts = {
+      -- add any options here
+    },
+    dependencies = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      'MunifTanjim/nui.nvim',
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      'rcarriga/nvim-notify',
+    },
+  },
+
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
+
   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
   {
@@ -141,37 +132,13 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'lukas-reineke/indent-blankline.nvim',
-  --   event = 'BufRead',
-  --   main = 'ibl',
-  --   config = function()
-  --     require('ibl').setup()
-  --   end,
-  -- },
-  --
   {
-    'folke/twilight.nvim',
-    opts = {
-      dimming = {
-        alpha = 0.25, -- amount of dimming
-        -- we try to get the foreground from the highlight groups or fallback color
-        color = { 'Normal', '#ffffff' },
-        term_bg = '#000000', -- if guibg=NONE, this will be used to calculate text color
-        inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
-      },
-      context = 10, -- amount of lines we will try to show around the current line
-      treesitter = true, -- use treesitter when available for the filetype
-      -- treesitter is used to automatically expand the visible text,
-      -- but you can further control the types of nodes that should always be fully expanded
-      expand = { -- for treesitter, we we always try to expand to the top-most ancestor with these types
-        'function',
-        'method',
-        'table',
-        'if_statement',
-      },
-      exclude = {}, -- exclude these filetypes
-    },
+    'lukas-reineke/indent-blankline.nvim',
+    event = 'BufRead',
+    main = 'ibl',
+    config = function()
+      require('ibl').setup()
+    end,
   },
 
   {
@@ -256,16 +223,6 @@ require('lazy').setup({
   },
 
   {
-    'williamboman/mason.nvim',
-    event = 'VeryLazy',
-    dependencies = {
-      {
-        'williamboman/mason-lspconfig.nvim',
-      },
-    },
-  },
-
-  {
     'SmiteshP/nvim-navic',
     event = 'BufRead',
     config = function()
@@ -306,12 +263,11 @@ require('lazy').setup({
     dependencies = {
       {
         'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        build = 'make install_jsregexp',
         config = function()
           require('lsp.luasnip')
         end,
-        dependencies = {
-          { 'rafamadriz/friendly-snippets' },
-        },
       },
       {
         'windwp/nvim-autopairs',
@@ -336,27 +292,6 @@ require('lazy').setup({
   -------CODE------
   ------------------
 
-  {
-    'AckslD/swenv.nvim',
-    ft = 'py',
-    opts = {
-      -- Should return a list of tables with a `name` and a `path` entry each.
-      -- Gets the argument `venvs_path` set below.
-      -- By default just lists the entries in `venvs_path`.
-      get_venvs = function(venvs_path)
-        return require('swenv.api').get_venvs(venvs_path)
-      end,
-      -- Path passed to `get_venvs`.
-      venvs_path = vim.fn.expand('~/.virtualenvs'),
-      -- Something to do after setting an environment
-      post_set_venv = function()
-        vim.cmd([[
-          :LspRestart<cr>
-          ]])
-      end,
-    },
-  },
-
   { 'mfussenegger/nvim-dap', event = 'VeryLazy' },
 
   {
@@ -376,8 +311,6 @@ require('lazy').setup({
     end,
   },
 
-  { 'ianding1/leetcode.vim', event = 'VeryLazy' },
-
   {
     'andymass/vim-matchup',
     event = 'BufRead',
@@ -387,15 +320,6 @@ require('lazy').setup({
       -- vim.keymap.set({ 'x', 'o' }, 'o<tab>', '<plug>(matchup-o%)')
       vim.g.matchup_override_vimtex = 1
     end,
-  },
-
-  {
-    'akinsho/bufferline.nvim',
-    event = 'CursorHold',
-    config = function()
-      require('plugins.bufferline')
-    end,
-    branch = 'main',
   },
 
   {
@@ -410,7 +334,7 @@ require('lazy').setup({
     'lervag/vimtex',
     ft = 'tex',
     config = function()
-      vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex' }
+      vim.g.vimtex_compiler_latexmk_engines = { _ = '-pdflatex' }
       vim.g.vimtex_view_method = 'zathura'
       vim.g.vimtex_compiler_latexmk = {
         out_dir = './build/',

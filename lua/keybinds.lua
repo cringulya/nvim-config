@@ -10,15 +10,8 @@ end
 -- map('n', '<TAB>', '<CMD>bn<CR>')
 -- map('n', '<s-TAB>', '<CMD>bp<CR>')
 map('n', 'Q', '<CMD>bd!<CR>')
-map('n', '<leader>bk', '<CMD>bd!<CR>')
 map('n', 'H', '0')
 map('n', 'L', '$')
-
--- reload config
-map('n', '<leader>uc', '<CMD>source ~/.config/nvim/init.lua<CR>')
-
--- Copying the vscode behaviour of making tab splits
-map('n', '<C-\\>', '<CMD>vsplit<CR>')
 
 -- Terminal to normal mode
 map('t', '<ESC>', '<C-\\><C-n><CR>')
@@ -42,10 +35,6 @@ function! ToggleQuickFix()
 endfunction
 
 nnoremap <silent> <c-q> :call ToggleQuickFix()<CR>
-]])
-
-vim.cmd([[
-  set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 ]])
 
 map('n', ':й', ':q')

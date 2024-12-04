@@ -1,6 +1,8 @@
 local types = require('luasnip.util.types')
 
 require('luasnip').setup({
+  enable_autosnippets = true,
+  store_selection_keys = '<Tab>',
   ext_opts = {
     [types.choiceNode] = {
       active = {
@@ -15,9 +17,7 @@ require('luasnip').setup({
   },
 })
 
--- Loading any vscode snippets from plugins
-require('luasnip.loaders.from_vscode').lazy_load()
-require('luasnip.loaders.from_vscode').lazy_load({
+require('luasnip.loaders.from_lua').lazy_load({
   paths = '~/.config/nvim/snippets',
 })
 
@@ -27,11 +27,5 @@ require('luasnip').filetype_extend(
   { 'javascriptreact', 'typescriptreact' }
 )
 
-
 -- Mappins to move around inside snippets
-vim.keymap.set({ 'i', 's', 'v' }, '<c-l>', '<CMD>lua require("luasnip").jump(1)<CR>')
-vim.keymap.set(
-  { 'i', 's', 'v' },
-  '<c-h>',
-  '<CMD>lua require("luasnip").jump(-1)<CR>'
-)
+vim.keymap.set({ 'i' }, '<c-u>', require('luasnip.extras.select_choice'))

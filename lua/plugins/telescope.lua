@@ -63,4 +63,4 @@ local Telescope = setmetatable({}, {
   end,
 })
 
-vim.keymap.set('n', '<leader>P', '<cmd>Telescope projects<cr>')
+vim.keymap.set('n', '<leader>p', '<cmd>Telescope projects<cr>')
