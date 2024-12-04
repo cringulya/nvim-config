@@ -17,7 +17,9 @@ require('tasks').setup({
     pos = 'botright', -- Default quickfix position.
     height = 12, -- Default height.
   },
-  dap_open_command = function() return require('dap').repl.open() end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui
+  dap_open_command = function()
+    return require('dap').repl.open()
+  end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui
 })
 
 vim.keymap.set('n', '<leader>cg', '<CMD>Task start cmake configure<CR>')

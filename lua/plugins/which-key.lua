@@ -60,7 +60,11 @@ M.config = {
     { '<leader>H', require('telescope.builtin').help_tags, desc = 'Help' },
     { '<leader>,', require('telescope.builtin').buffers, desc = 'Buffers' },
 
-    { '<leader>h', '<cmd>nohlsearch<CR>', desc = 'No Highlight' },
+    {
+      '<leader>h',
+      '<cmd>nohlsearch<cr><cmd>Noice dismiss<cr>',
+      desc = 'No Highlight',
+    },
 
     { "'", group = 'search' },
     {
@@ -75,7 +79,7 @@ M.config = {
     },
 
     { '<leader>g', group = 'Git' },
-    { '<leader>gg', '<cmd>G<cr>', desc = 'Fugitive' },
+    { '<leader>gg', '<cmd>Neogit<cr>', desc = 'Fugitive' },
     {
       '<leader>gj',
       function()

@@ -9,11 +9,6 @@ require('luasnip').setup({
         virt_text = { { '●', 'DiffAdd' } },
       },
     },
-    [types.insertNode] = {
-      active = {
-        virt_text = { { '●', 'DiffDelete' } },
-      },
-    },
   },
 })
 

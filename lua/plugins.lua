@@ -68,6 +68,16 @@ require('lazy').setup({
   },
 
   {
+    'nativerv/cyrillic.nvim',
+    event = { 'VeryLazy' },
+    config = function()
+      require('cyrillic').setup({
+        no_cyrillic_abbrev = false, -- default
+      })
+    end,
+  },
+
+  {
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
     lazy = true,
@@ -112,6 +122,9 @@ require('lazy').setup({
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
+    config = function()
+      require('plugins.noice').setup()
+    end,
     opts = {
       -- add any options here
     },
@@ -128,6 +141,8 @@ require('lazy').setup({
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
 
   { 'nvim-tree/nvim-web-devicons', lazy = true },
+
+  { 'lukas-reineke/virt-column.nvim', opts = {} },
 
   {
     'christoomey/vim-tmux-navigator',
@@ -158,11 +173,6 @@ require('lazy').setup({
     config = function()
       require('plugins.gitsigns')
     end,
-  },
-
-  {
-    'tpope/vim-fugitive',
-    event = 'BufRead',
   },
 
   {
@@ -290,6 +300,8 @@ require('lazy').setup({
     },
   },
 
+  { 'folke/trouble.nvim', opts = {}, cmd = 'Trouble' },
+
   -- SchemaStore
   {
     'b0o/schemastore.nvim',
@@ -299,6 +311,26 @@ require('lazy').setup({
   ------------------
   -------CODE------
   ------------------
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+      'nvim-telescope/telescope.nvim', -- optional
+    },
+    config = true,
+  },
+
+  {
+    'nvim-orgmode/orgmode',
+    event = 'VeryLazy',
+    ft = { 'org' },
+    config = function()
+      -- Setup orgmode
+      require('plugins.orgmode').setup()
+    end,
+  },
 
   { 'mfussenegger/nvim-dap', event = 'VeryLazy' },
 
@@ -355,19 +387,17 @@ require('lazy').setup({
   -----------------------------------
 
   {
-    {
-      'nvim-treesitter/nvim-treesitter',
-      event = 'BufEnter',
-      build = ':TSUpdate',
-      config = function()
-        require('plugins.treesitter')
-      end,
-      dependencies = {
-        { 'nvim-treesitter/nvim-treesitter-textobjects' },
-        { 'nvim-treesitter/nvim-treesitter-refactor' },
-        { 'windwp/nvim-ts-autotag' },
-        { 'JoosepAlviste/nvim-ts-context-commentstring' },
-      },
+    'nvim-treesitter/nvim-treesitter',
+    event = 'BufEnter',
+    build = ':TSUpdate',
+    config = function()
+      require('plugins.treesitter')
+    end,
+    dependencies = {
+      { 'nvim-treesitter/nvim-treesitter-textobjects' },
+      { 'nvim-treesitter/nvim-treesitter-refactor' },
+      { 'windwp/nvim-ts-autotag' },
+      { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
   },
 })

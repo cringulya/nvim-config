@@ -8,6 +8,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 o.relativenumber = true
+o.colorcolumn = '81'
 
 o.termguicolors = true
 -- o.background = 'dark'
@@ -25,22 +26,6 @@ o.updatetime = 200
 -- Better editor UI
 o.number = true
 o.cursorline = true
-
--- Blinking cursor
-vim.cmd([[
-  au VimEnter,VimResume * set guicursor=a:blinkwait5-blinkon5-blinkoff5,
-  \n-v-sm:block,i-c-ci-ve:ver25,r-cr-o:hor20
-
-  au VimLeave,VimSuspend * set guicursor=a:ver1-blinkwait5-blinkon5-blinkoff5
-
-  if exists('$TMUX')
-    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  else
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  endif
-]])
 
 -- Better editing experience
 o.expandtab = true
@@ -93,11 +78,3 @@ o.foldminlines = 1
 -- Map <leader> to space
 g.mapleader = ' '
 g.maplocalleader = '\\'
-vim.g.tex_flavor = 'latex'
-
-vim.cmd([[
-  set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ
-  \;ABCDEFGHIJKLMNOPQRSTUVWXYZ
-  \,фисвуапршолдьтщзйкыегмцчня
-  \;abcdefghijklmnopqrstuvwxyz
-]])

@@ -36,5 +36,3 @@ endfunction
 
 nnoremap <silent> <c-q> :call ToggleQuickFix()<CR>
 ]])
-
-map('n', ':й', ':q')

@@ -39,6 +39,7 @@ require('nvim-treesitter.configs').setup({
     'typescript',
     'hlsl',
   },
+  ignore_install = { 'org' },
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
