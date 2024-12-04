@@ -12,6 +12,7 @@ cmp.setup({
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
+  keyword_length = 2,
 
   mapping = cmp.mapping.preset.insert({
     ['<C-n>'] = cmp.mapping(function(fallback)

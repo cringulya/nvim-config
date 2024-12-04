@@ -76,14 +76,13 @@ local c = ls.choice_node
 
 lspsnips = {}
 
+local clangCapat = capabilities
+clangCapat.textDocument.signature_help = false
 -- clangd
 lsp.clangd.setup({
   on_attach = function(client, buf)
     navic.attach(client, buf)
     U.mappings(buf)
-    require('lsp_signature').on_attach({
-      hint_prefix = ' ',
-    })
     vim.keymap.set(
       'n',
       '<leader>lh',
@@ -92,6 +91,7 @@ lsp.clangd.setup({
     )
     U.fmt_on_save(client, buf)
   end,
+  capabilities = clangCapat,
 })
 
 -- Lua

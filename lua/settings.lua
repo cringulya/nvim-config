@@ -93,6 +93,7 @@ o.foldminlines = 1
 -- Map <leader> to space
 g.mapleader = ' '
 g.maplocalleader = '\\'
+vim.g.tex_flavor = 'latex'
 
 vim.cmd([[
   set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ

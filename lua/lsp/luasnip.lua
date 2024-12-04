@@ -2,7 +2,7 @@ local types = require('luasnip.util.types')
 
 require('luasnip').setup({
   enable_autosnippets = true,
-  store_selection_keys = '<Tab>',
+  cut_selection_keys = '<Tab>',
   ext_opts = {
     [types.choiceNode] = {
       active = {
@@ -17,7 +17,7 @@ require('luasnip').setup({
   },
 })
 
-require('luasnip.loaders.from_lua').lazy_load({
+require('luasnip.loaders.from_lua').load({
   paths = '~/.config/nvim/snippets',
 })
 
