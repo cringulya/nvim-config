@@ -1,4 +1,5 @@
 local Path = require('plenary.path')
+
 require('tasks').setup({
   default_params = { -- Default module parameters with which `neovim.json` will be created.
     cmake = {
@@ -22,6 +23,16 @@ require('tasks').setup({
   end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui
 })
 
-vim.keymap.set('n', '<leader>cg', '<CMD>Task start cmake configure<CR>')
-vim.keymap.set('n', '<leader>cb', '<CMD>Task start cmake build<CR>')
-vim.keymap.set('n', '<leader>cr', '<CMD>Task start cmake run<CR>')
+vim.api.nvim_create_autocmd({ 'Filetype' }, {
+  pattern = { 'cpp', 'c' },
+  callback = function()
+    vim.keymap.set('n', '<leader>cg', '<CMD>Task start cmake configure<CR>')
+    vim.keymap.set('n', '<leader>cb', '<CMD>Task start cmake build<CR>')
+    vim.keymap.set('n', '<leader>cr', '<CMD>Task start cmake run<CR>')
+    vim.keymap.set(
+      'n',
+      '<leader>ct',
+      '<CMD>Task set_module_param cmake target<CR>'
+    )
+  end,
+})

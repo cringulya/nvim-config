@@ -13,6 +13,9 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   keyword_length = 2,
+  experimental = {
+    ghost_text = true,
+  },
 
   mapping = cmp.mapping.preset.insert({
     ['<C-n>'] = cmp.mapping(function(fallback)

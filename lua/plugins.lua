@@ -323,6 +323,11 @@ require('lazy').setup({
   },
 
   {
+    'stevearc/overseer.nvim',
+    opts = {},
+  },
+
+  {
     'nvim-orgmode/orgmode',
     event = 'VeryLazy',
     ft = { 'org' },

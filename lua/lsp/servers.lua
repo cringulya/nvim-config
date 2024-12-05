@@ -74,13 +74,10 @@ local i = ls.insert_node
 local t = ls.text_node
 local c = ls.choice_node
 
-lspsnips = {}
-
-local clangCapat = capabilities
-clangCapat.textDocument.signature_help = false
 -- clangd
 lsp.clangd.setup({
   on_attach = function(client, buf)
+    client.documentSignatureHelpProvider = false
     navic.attach(client, buf)
     U.mappings(buf)
     vim.keymap.set(
@@ -91,7 +88,7 @@ lsp.clangd.setup({
     )
     U.fmt_on_save(client, buf)
   end,
-  capabilities = clangCapat,
+  capabilities = capabilities,
 })
 
 -- Lua
@@ -222,7 +219,6 @@ local servers = {
   'cmake',
   -- 'sourcekit',
   -- 'jedi_language_server',
-  'pyright',
   'ruff',
   'texlab',
   'nil_ls',

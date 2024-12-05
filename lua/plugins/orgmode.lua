@@ -10,6 +10,7 @@ M.setup = function()
   local wk = require('which-key')
   wk.add({
     { '<leader>o', group = 'Org' },
+    { '<leader>of', '<cmd>Telescope find_files search_dirs=~/org<cr>' },
   })
 end
 
