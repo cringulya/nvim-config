@@ -4,6 +4,7 @@ local icons = require('icons')
 M.config = {
   ---@usage disable which-key completely [not recommended]
   setup = {
+    delay = 1000,
     plugins = {
       marks = false, -- shows a list of your marks on ' and `
       registers = false, -- shows your registers on " in NORMAL or <C-r> in INSERT mode

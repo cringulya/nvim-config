@@ -21,6 +21,4 @@ require('code_runner').setup({
     c = 'cd $dir && mkdir -p build && gcc -fsanitize=address -Wall -Wextra -Wshadow -O2 -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',
     swift = 'swift $dir/$fileName',
   },
-
-  project_path = vim.fn.expand('~/.config/nvim/project_manager.json'),
 })

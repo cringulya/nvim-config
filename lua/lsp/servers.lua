@@ -91,6 +91,30 @@ lsp.clangd.setup({
   capabilities = capabilities,
 })
 
+lsp.ruff.setup({
+  trace = 'messages',
+  init_options = {
+    settings = {
+      logLevel = 'debug',
+    },
+  },
+  on_attach = function(client, buf)
+    local symbols_supported =
+      client.supports_method('textDocument/documentSymbol')
+    if symbols_supported then
+      navic.attach(client, buf)
+      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
+    end
+    require('lsp_signature').on_attach({
+      hint_prefix = ' ',
+    })
+    U.mappings(buf)
+    U.fmt_on_save(client, buf)
+  end,
+  flags = flags,
+  capabilities = capabilities,
+})
+
 -- Lua
 lsp.lua_ls.setup({
   on_attach = on_attach,
@@ -217,14 +241,11 @@ local servers = {
   'cssls', -- CSS
   'yamlls', -- YAML
   'cmake',
-  -- 'sourcekit',
-  -- 'jedi_language_server',
-  'ruff',
+  'pyright',
   'texlab',
   'nil_ls',
   'dockerls',
   'marksman',
-  -- 'terraformls', -- Terraform
 }
 
 local conf = {

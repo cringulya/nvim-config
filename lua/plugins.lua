@@ -324,7 +324,22 @@ require('lazy').setup({
 
   {
     'stevearc/overseer.nvim',
-    opts = {},
+    config = function()
+      require('plugins.overseer').setup()
+    end,
+    dependencies = {
+
+      { 'akinsho/toggleterm.nvim', version = '*', config = true },
+    },
+  },
+
+  {
+    'mrcjkb/haskell-tools.nvim',
+    version = '^4', -- Recommended
+    lazy = false, -- This plugin is already lazy
+    config = function()
+      require('plugins.haskell').setup()
+    end,
   },
 
   {
@@ -335,6 +350,7 @@ require('lazy').setup({
       -- Setup orgmode
       require('plugins.orgmode').setup()
     end,
+    dependencies = { 'akinsho/org-bullets.nvim' },
   },
 
   { 'mfussenegger/nvim-dap', event = 'VeryLazy' },

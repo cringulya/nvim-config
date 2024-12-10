@@ -129,7 +129,7 @@ db.setup({
         desc_hl = 'group',
         key = 'n',
         key_hl = 'group',
-        action = 'Neorg workspace notes',
+        action = 'Telescope find_files search_dirs=~/org',
       },
     },
     footer = {},
