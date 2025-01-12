@@ -26,6 +26,7 @@ o.scrolloff = 2
 -- Better editor UI
 o.number = true
 o.cursorline = true
+o.cmdheight = 0
 
 -- Better editing experience
 o.expandtab = true

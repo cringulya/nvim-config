@@ -107,12 +107,31 @@ ins_left({
   color = { fg = colors.violet, gui = 'bold' },
 })
 
--- ins_right({
---   require('noice').api.statusline.mode.get,
---   color = { fg = colors.pine },
---   cond = require('noice').api.statusline.mode.has,
--- })
+ins_right({
+  function()
+    local recording_register = vim.fn.reg_recording()
+    if recording_register ~= '' then
+      return 'recording @' .. recording_register
+    end
+    return ''
+  end,
+  cond = function()
+    return vim.fn.reg_recording() ~= ''
+  end,
+  color = { fg = colors.violet },
+})
 
+ins_right({
+  'diagnostics',
+  sources = { 'nvim_diagnostic' },
+  symbols = { error = ' ', warn = ' ', info = ' ' },
+  diagnostics_color = {
+    error = { fg = colors.red },
+    warn = { fg = colors.yellow },
+    info = { fg = colors.cyan },
+  },
+  padding = { right = 1 },
+})
 ins_right({
   -- Lsp server name .
   function()
@@ -191,18 +210,6 @@ ins_right({
   end,
   icon = ' lsp:',
   color = { gui = 'bold' },
-})
-
-ins_right({
-  'diagnostics',
-  sources = { 'nvim_diagnostic' },
-  symbols = { error = ' ', warn = ' ', info = ' ' },
-  diagnostics_color = {
-    error = { fg = colors.red },
-    warn = { fg = colors.yellow },
-    info = { fg = colors.cyan },
-  },
-  padding = { right = 1 },
 })
 
 return config

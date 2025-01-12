@@ -24,6 +24,7 @@ vim.api.nvim_create_autocmd('Filetype', {
     vim.opt_local.colorcolumn = '0'
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
+    Snacks.indent.disable()
     vim.keymap.set(
       'i',
       '<S-CR>',

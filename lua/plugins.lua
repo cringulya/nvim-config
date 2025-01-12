@@ -356,6 +356,24 @@ require('lazy').setup({
   },
 
   {
+    'nvim-neorg/neorg',
+    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    version = '*', -- Pin Neorg to the latest stable release
+    config = true,
+    init = function()
+      require('neorg').setup({
+        load = {
+          ['core.defaults'] = {},
+          ['core.concealer'] = {}, -- We added this line!
+          ['core.export'] = {},
+          ['core.completion'] = {},
+          ['core.latex.renderer'] = {},
+        },
+      })
+    end,
+  },
+
+  {
     'nvim-orgmode/orgmode',
     event = 'VeryLazy',
     ft = { 'org' },
@@ -420,6 +438,8 @@ require('lazy').setup({
     '3rd/image.nvim',
     opts = {},
   },
+
+  { 'lukas-reineke/virt-column.nvim', opts = {} },
 
   -----------------------------------
   -- Treesitter: Better Highlights --
