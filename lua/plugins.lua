@@ -91,6 +91,9 @@ require('lazy').setup({
     'vhyrro/luarocks.nvim',
     priority = 1000, -- We'd like this plugin to load first out of the rest
     config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+    opts = {
+      rocks = { 'magick' },
+    },
   },
 
   {
@@ -150,15 +153,6 @@ require('lazy').setup({
     config = function()
       vim.g.tmux_navigator_save_on_switch = 2
       vim.g.tmux_navigator_disable_when_zoomed = 1
-    end,
-  },
-
-  {
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'BufRead',
-    main = 'ibl',
-    config = function()
-      require('ibl').setup()
     end,
   },
 
@@ -401,6 +395,11 @@ require('lazy').setup({
         out_dir = './build/',
       }
     end,
+  },
+
+  {
+    '3rd/image.nvim',
+    opts = {},
   },
 
   -----------------------------------
