@@ -60,14 +60,6 @@ require('lazy').setup({
   },
 
   {
-    'glepnir/dashboard-nvim',
-    event = 'VimEnter',
-    config = function()
-      require('plugins.dashboard-nvim')
-    end,
-  },
-
-  {
     'nativerv/cyrillic.nvim',
     event = { 'VeryLazy' },
     config = function()
@@ -123,29 +115,56 @@ require('lazy').setup({
   --------------------------
 
   {
-    'folke/noice.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('plugins.noice').setup()
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
+    opts = require('plugins.snacks').opts,
+    keys = require('plugins.snacks').keys,
+    init = function()
+      vim.api.nvim_create_autocmd('User', {
+        pattern = 'VeryLazy',
+        callback = function()
+          -- Setup some globals for debugging (lazy-loaded)
+          _G.dd = function(...)
+            Snacks.debug.inspect(...)
+          end
+          _G.bt = function()
+            Snacks.debug.backtrace()
+          end
+          vim.print = _G.dd -- Override print to use snacks for `:=` command
+
+          -- Create some toggle mappings
+          Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
+          Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
+          Snacks.toggle
+            .option('relativenumber', { name = 'Relative Number' })
+            :map('<leader>uL')
+          Snacks.toggle.diagnostics():map('<leader>ud')
+          Snacks.toggle.line_number():map('<leader>ul')
+          Snacks.toggle
+            .option('conceallevel', {
+              off = 0,
+              on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2,
+            })
+            :map('<leader>uc')
+          Snacks.toggle.treesitter():map('<leader>uT')
+          Snacks.toggle
+            .option(
+              'background',
+              { off = 'light', on = 'dark', name = 'Dark Background' }
+            )
+            :map('<leader>ub')
+          Snacks.toggle.inlay_hints():map('<leader>uh')
+          Snacks.toggle.indent():map('<leader>ug')
+          Snacks.toggle.dim():map('<leader>uD')
+        end,
+      })
     end,
-    opts = {
-      -- add any options here
-    },
-    dependencies = {
-      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-      'MunifTanjim/nui.nvim',
-      -- OPTIONAL:
-      --   `nvim-notify` is only needed, if you want to use the notification view.
-      --   If not available, we use `mini` as the fallback
-      'rcarriga/nvim-notify',
-    },
   },
 
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
 
   { 'nvim-tree/nvim-web-devicons', lazy = true },
-
-  { 'lukas-reineke/virt-column.nvim', opts = {} },
 
   {
     'christoomey/vim-tmux-navigator',

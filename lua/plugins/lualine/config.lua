@@ -107,11 +107,11 @@ ins_left({
   color = { fg = colors.violet, gui = 'bold' },
 })
 
-ins_right({
-  require('noice').api.statusline.mode.get,
-  color = { fg = colors.pine },
-  cond = require('noice').api.statusline.mode.has,
-})
+-- ins_right({
+--   require('noice').api.statusline.mode.get,
+--   color = { fg = colors.pine },
+--   cond = require('noice').api.statusline.mode.has,
+-- })
 
 ins_right({
   -- Lsp server name .

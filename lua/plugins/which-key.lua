@@ -63,7 +63,7 @@ M.config = {
 
     {
       '<leader>h',
-      '<cmd>nohlsearch<cr><cmd>Noice dismiss<cr>',
+      '<cmd>nohlsearch<cr><cmd>lua Snacks.notifier.hide()<cr>',
       desc = 'No Highlight',
     },
 
