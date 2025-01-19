@@ -146,13 +146,6 @@ M.keys = {
     end,
     desc = 'Git Blame Line',
   },
-  {
-    '<leader>un',
-    function()
-      Snacks.notifier.hide()
-    end,
-    desc = 'Dismiss All Notifications',
-  },
 }
 
 return M

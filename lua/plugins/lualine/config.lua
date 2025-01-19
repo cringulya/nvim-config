@@ -168,12 +168,12 @@ ins_right({
 
       return providers_for_methods
     end
-    msg = msg or 'Inactive'
+    msg = msg or ''
     local buf_clients = vim.lsp.buf_get_clients()
     if next(buf_clients) == nil then
       -- TODO: clean up this if statement
       if type(msg) == 'boolean' or #msg == 0 then
-        return 'Inactive'
+        return ''
       end
       return msg
     end
@@ -208,7 +208,7 @@ ins_right({
 
     return language_servers
   end,
-  icon = ' lsp:',
+  icon = '',
   color = { gui = 'bold' },
 })
 

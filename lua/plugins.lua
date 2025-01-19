@@ -435,6 +435,15 @@ require('lazy').setup({
   },
 
   {
+    'chomosuke/typst-preview.nvim',
+    ft = 'typst',
+    version = '1.*',
+    opts = {
+      open_cmd = 'zathura %s',
+    }, -- lazy.nvim will implicitly calls `setup {}`
+  },
+
+  {
     '3rd/image.nvim',
     opts = {},
   },
