@@ -35,6 +35,23 @@ require('lazy').setup({
 
   { 'numToStr/Sakura.nvim', priority = 1000 },
 
+  {
+    'rose-pine/neovim',
+    name = 'rose-pine',
+    config = function()
+      require('rose-pine').setup({
+        highlight_groups = {
+          TelescopeBorder = { fg = 'highlight_high', bg = 'none' },
+          TelescopeNormal = { bg = 'none' },
+          TelescopePromptNormal = { bg = 'base' },
+          TelescopeResultsNormal = { fg = 'subtle', bg = 'none' },
+          TelescopeSelection = { fg = 'text', bg = 'base' },
+          TelescopeSelectionCaret = { fg = 'rose', bg = 'rose' },
+        },
+      })
+    end,
+  },
+
   { 'folke/neodev.nvim', lazy = true },
 
   {
@@ -76,6 +93,22 @@ require('lazy').setup({
     ft = { 'markdown' },
     build = function()
       vim.fn['mkdp#util#install']()
+    end,
+  },
+
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'echasnovski/mini.nvim',
+    }, -- if you use the mini.nvim suite
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+    config = function()
+      require('render-markdown').setup({
+        file_types = { 'markdown', 'quarto', 'org' },
+      })
     end,
   },
 
@@ -124,15 +157,6 @@ require('lazy').setup({
       vim.api.nvim_create_autocmd('User', {
         pattern = 'VeryLazy',
         callback = function()
-          -- Setup some globals for debugging (lazy-loaded)
-          _G.dd = function(...)
-            Snacks.debug.inspect(...)
-          end
-          _G.bt = function()
-            Snacks.debug.backtrace()
-          end
-          vim.print = _G.dd -- Override print to use snacks for `:=` command
-
           -- Create some toggle mappings
           Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
           Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
