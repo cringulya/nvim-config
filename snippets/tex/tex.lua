@@ -115,6 +115,27 @@ return {
   ),
 
   s(
+    'tkz',
+    fmta(
+      [[
+      \begin{figure}[h]
+        \centering
+        \begin{tikzpicture}[
+            roundnode/.style={circle, draw=black!60, very thick,
+                minimum size=5mm},
+            node distance=15cm,
+            auto
+          ]
+          <>
+        \end{tikzpicture}
+      \end{figure}
+      ]],
+      { i(0) }
+    ),
+    { condition = tex.in_text, show_condition = tex.in_text }
+  ),
+
+  s(
     'code',
     fmta(
       [[

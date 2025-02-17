@@ -6,3 +6,4 @@ require('filetype')
 
 vim.cmd([[colorscheme rose-pine]])
 -- vim.cmd([[colorscheme gruvbox]])
+-- require('kanagawa').load('wave')
