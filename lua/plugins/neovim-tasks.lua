@@ -8,7 +8,7 @@ require('tasks').setup({
       build_type = 'Debug', -- Build type, can be changed using `:Task set_module_param cmake build_type`.
       dap_name = 'lldb', -- DAP configuration name from `require('dap').configurations`. If there is no such configuration, a new one with this name as `type` will be created.
       args = { -- Task default arguments.
-        configure = { '-D', 'CMAKE_EXPORT_COMPILE_COMMANDS=1', '-G', 'Ninja' },
+        configure = { '-DCMAKE_EXPORT_COMPILE_COMMANDS=1', '-GNinja' },
       },
     },
   },
@@ -24,7 +24,7 @@ require('tasks').setup({
 })
 
 vim.api.nvim_create_autocmd({ 'Filetype' }, {
-  pattern = { 'cpp', 'c' },
+  pattern = { 'cpp', 'c', 'cmake' },
   callback = function()
     vim.keymap.set('n', '<leader>cg', '<CMD>Task start cmake configure<CR>')
     vim.keymap.set('n', '<leader>cb', '<CMD>Task start cmake build<CR>')

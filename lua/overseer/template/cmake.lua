@@ -11,7 +11,7 @@ return {
         -- we don't have to define a separate build task.
         {
           'dependencies',
-          task_names = { { cmd = 'g++', args = { file, '-o', outfile } } },
+          task_names = { { cmd = 'c++', args = { file, '-o', outfile } } },
         },
         'default',
       },

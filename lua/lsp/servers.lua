@@ -76,6 +76,9 @@ local c = ls.choice_node
 
 -- clangd
 lsp.clangd.setup({
+  init_options = {
+    fallbackFlags = { '--std=c++23' },
+  },
   on_attach = function(client, buf)
     client.documentSignatureHelpProvider = false
     navic.attach(client, buf)

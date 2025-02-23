@@ -6,7 +6,7 @@ require('gitsigns').setup({
     local opts = { buffer = buf, expr = true, replace_keycodes = false }
 
     -- Navigation  map('n', ']c', "&diff ? ']c' : '<CMD>Gitsigns next_hunk<CR>'", opts)
-    map('n', '[c', "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", opts)
+    -- map('n', '[c', "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", opts)
 
     -- Actions
     map({ 'n', 'v' }, '<leader>hr', gs.reset_hunk, { buffer = buf })

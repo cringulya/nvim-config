@@ -413,7 +413,13 @@ require('lazy').setup({
     dependencies = { 'akinsho/org-bullets.nvim' },
   },
 
-  { 'mfussenegger/nvim-dap', event = 'VeryLazy' },
+  {
+    'mfussenegger/nvim-dap',
+    event = 'VeryLazy',
+    config = function()
+      require('plugins.dap')
+    end,
+  },
 
   {
     'rcarriga/nvim-dap-ui',
@@ -455,7 +461,7 @@ require('lazy').setup({
     'lervag/vimtex',
     ft = 'tex',
     config = function()
-      vim.g.vimtex_compiler_latexmk_engines = { _ = '-pdflatex' }
+      vim.g.vimtex_compiler_latexmk_engines = { _ = '-pdflatex -shell-escape' }
       vim.g.vimtex_view_method = 'zathura'
       vim.g.vimtex_compiler_latexmk = {
         out_dir = './build/',
