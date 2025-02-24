@@ -10,9 +10,21 @@ local fmta = require('luasnip.extras.fmt').fmta
 local rep = require('luasnip.extras').rep
 
 return {
+  s({ trig = 'pdebug', dscr = 'ifdef block' }, {
+    t({ '#ifdef KEKIS', '  ' }),
+    i(0),
+    t({ '', '#endif' }),
+  }),
   s({ trig = 'contest', dscr = 'contest template' }, {
     t({
-      '#include <bits/stdc++.h>',
+      '#include <iostream>',
+      '#include <algorithm>',
+      '#include <vector>',
+      '#include <map>',
+      '#include <stack>',
+      '#include <queue>',
+      '#include <string>',
+      '#include <set>',
       '',
       'using namespace std;',
       'typedef long long ll;',
