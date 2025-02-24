@@ -11,9 +11,9 @@ local rep = require('luasnip.extras').rep
 
 return {
   s({ trig = 'pdebug', dscr = 'ifdef block' }, {
-    t({ '#ifdef KEKIS', '  ' }),
+    t({ '#ifdef KEKIS', 'cout << "====Debug====" << endl;', '' }),
     i(0),
-    t({ '', '#endif' }),
+    t({ '', 'cout << "=============" << endl;', '#endif' }),
   }),
   s({ trig = 'contest', dscr = 'contest template' }, {
     t({
