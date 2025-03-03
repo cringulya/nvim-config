@@ -112,7 +112,13 @@ require('lazy').setup({
     opts = {},
     config = function()
       require('render-markdown').setup({
-        file_types = { 'markdown', 'quarto', 'org' },
+        file_types = { 'markdown', 'quarto' },
+        anti_conceal = { enabled = false },
+        win_options = {
+          concealcursor = {
+            rendered = 'nci',
+          },
+        },
       })
     end,
   },
@@ -163,7 +169,6 @@ require('lazy').setup({
         pattern = 'VeryLazy',
         callback = function()
           -- Create some toggle mappings
-          Snacks.toggle.option('spell', { name = 'Spelling' }):map('<leader>us')
           Snacks.toggle.option('wrap', { name = 'Wrap' }):map('<leader>uw')
           Snacks.toggle
             .option('relativenumber', { name = 'Relative Number' })

@@ -53,6 +53,12 @@ return {
     t('}'),
   }, { condition = env.in_mathzone, show_condition = env.in_mathzone }),
 
+  s({ trig = '\\{$', regTrig = true, snippetType = 'autosnippet' }, {
+    t('\\{'),
+    i(1),
+    t('\\'),
+  }, { condition = env.in_mathzone, show_condition = env.in_mathzone }),
+
   s(
     { trig = 'int' },
     fmta('\\int\\limits_{<>}^{<>} <>', { i(1), i(2), i(0) }),
@@ -119,6 +125,22 @@ return {
     <>
     ]],
       { i(1), i(0) },
+      {
+        condition = env.in_mathzone,
+        show_condition = env.in_mathzone,
+      }
+    )
+  ),
+
+  s(
+    { trig = 'beg' },
+    fmta(
+      [[
+    \begin{<>}
+      <>
+    \end{<>}
+    ]],
+      { i(1), i(0), rep(1) },
       {
         condition = env.in_mathzone,
         show_condition = env.in_mathzone,

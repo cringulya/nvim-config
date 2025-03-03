@@ -157,34 +157,58 @@ return {
       %! suppress = MissingLabel
 
       \documentclass[10pt,fleqn,a4paper]{article}
-      \usepackage[utf8]{inputenc}
-      \usepackage[T2A]{fontenc}
-      \usepackage{fullpage}
-      \usepackage[russian]{babel}
-      \usepackage{amsthm,amsmath,amsfonts,amssymb,amstext}
-      \usepackage{mathtools}
-      \usepackage{listings}
-      \usepackage{xcolor}
-      \usepackage{tikz}
-      \usepackage{graphicx}
-      \usepackage{caption}
-      \usepackage{float}
-      \usepackage{subcaption}
-      \usepackage{hyperref}
-      \usepackage[a4paper,left=15mm,right=15mm,top=30mm,bottom=20mm]{geometry}
-      \usepackage{indentfirst}
+      % Math and theorem environments
+      \usepackage{amsmath, amsthm}  % Load first
+      \usepackage{luacode}
+      % Language and fonts
+      \usepackage{fontspec}
+      \usepackage{polyglossia}
+      \setmainlanguage{russian}
+      \setotherlanguage{english}
+      % Fonts
+      \usepackage{fontspec}
+      \setmainfont{CMU Serif}
+      \setmonofont{Iosevka Nerd Font Mono}
+      \usepackage{unicode-math}
+      \setmathfont{Latin Modern Math}
 
-      \DeclareGraphicsExtensions{.pdf,.png,.jpg}
+      % Theorem styles
+      \theoremstyle{definition}
+      \newtheorem{problem}{Задача}
+      \newtheorem{definition}{Определение}
+      \newtheorem{theorem}{Теорема}
+      \newtheorem{corollary}{Следствие}
+      % Code highlighting
+      \usepackage{minted}
+      \setminted{fontsize=\footnotesize, autogobble, breaklines, frame=single}
+      % Graphics and TikZ
+      \usepackage{tikz}
+      \usetikzlibrary{arrows.meta, automata, positioning, graphs, calc}
+      \usepackage{pgfplots}
+      \pgfplotsset{compat=1.18}
+      % Page layout
+      \usepackage[a4paper, left=20mm, right=20mm, top=25mm, bottom=25mm]{geometry}
+      \usepackage{fullpage}
+      \usepackage{indentfirst}
+      \usepackage{parskip}
+      % Figures
+      \usepackage{graphicx}
+      \usepackage{float}
+      \usepackage{caption, subcaption}
+      % Hyperlinks
+      \usepackage{hyperref}
+      \hypersetup{
+          colorlinks=true,
+          linkcolor=blue,
+          urlcolor=blue
+      }
+      % Graphics path
       \graphicspath{{images/}}
 
-      \newtheorem{problem}{Задача}
-
+      % Proof environment fix
       \newenvironment{solution}
-       {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Решение]$ $\par\nobreak\ignorespaces}
-       {\end{proof}}
-
-
-      \newtheorem*{definition}{Определение}
+          {\begin{proof}[\textbf{Решение}]$ $\par\nobreak\ignorespaces}
+          {\end{proof}}
 
       \newcommand{\F}{\mathbb{F}}
       \newcommand{\Z}{\mathbb{Z}}
@@ -206,7 +230,8 @@ return {
 
       \title{<>}
       \author{Сон Артём}
-      \date{\today}
+      \date{\luaexec{os.setlocale("ru_RU.UTF-8") tex.print(os.date('\%d \%B \%Y'))}}
+
 
       \begin{document}
       \maketitle

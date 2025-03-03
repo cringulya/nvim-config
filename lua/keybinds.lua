@@ -9,8 +9,8 @@ end
 -- Move to the next/previous buffer
 -- map('n', '<TAB>', '<CMD>bn<CR>')
 -- map('n', '<s-TAB>', '<CMD>bp<CR>')
-map('n', 'H', '0')
-map('n', 'L', '$')
+map({ 'n', 'v' }, 'H', '0')
+map({ 'n', 'v' }, 'L', '$')
 
 -- Terminal to normal mode
 map('t', '<ESC>', '<C-\\><C-n><CR>')
