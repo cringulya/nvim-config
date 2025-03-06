@@ -249,6 +249,7 @@ local servers = {
   'nil_ls',
   'dockerls',
   'marksman',
+  'jdtls',
 }
 
 local conf = {
