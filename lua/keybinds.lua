@@ -11,6 +11,8 @@ end
 -- map('n', '<s-TAB>', '<CMD>bp<CR>')
 map({ 'n', 'v' }, 'H', '0')
 map({ 'n', 'v' }, 'L', '$')
+map({ 'n', 'v' }, 'Р', '0')
+map({ 'n', 'v' }, 'Д', '$')
 
 -- Terminal to normal mode
 map('t', '<ESC>', '<C-\\><C-n><CR>')

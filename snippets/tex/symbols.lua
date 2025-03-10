@@ -54,6 +54,11 @@ return {
     show_condition = env.in_mathzone,
   }),
 
+  s({ trig = ';t' }, { t('\\theta') }, {
+    condition = env.in_mathzone,
+    show_condition = env.in_mathzone,
+  }),
+
   s({ trig = ';b' }, { t('\\beta') }, {
     condition = env.in_mathzone,
     show_condition = env.in_mathzone,

@@ -178,12 +178,12 @@ return {
   ),
 
   s(
-    { trig = 'tt', dscr = "Expands 'tt' into '\texttt{}'" },
+    { trig = 'ttt', dscr = "Expands 'tt' into '\texttt{}'" },
     fmta('\\texttt{<>}', { i(1) })
   ),
 
   s(
-    { trig = 't', dscr = "Expands 't' into '\text{}'" },
+    { trig = 'tt', dscr = "Expands 't' into '\text{}'" },
     fmta('\\text{<>}', { i(1) })
   ),
 
