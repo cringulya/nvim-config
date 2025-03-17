@@ -30,6 +30,7 @@ require('project_nvim').setup({
     '.hg',
     '.bzr',
     '.svn',
+    '.gradle',
     'Makefile',
     'package.json',
     '.stylua.toml',
