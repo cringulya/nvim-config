@@ -266,11 +266,11 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'ray-x/lsp_signature.nvim',
-    event = 'VeryLazy',
-    lazy = true,
-  },
+  -- {
+  --   'ray-x/lsp_signature.nvim',
+  --   event = 'VeryLazy',
+  --   lazy = true,
+  -- },
 
   {
     'neovim/nvim-lspconfig',
@@ -415,17 +415,6 @@ require('lazy').setup({
   },
 
   {
-    'andymass/vim-matchup',
-    event = 'BufRead',
-    config = function()
-      -- vim.keymap.set({ 'n', 'x', 'o' }, '<cr>', '<plug>(matchup-%)')
-      -- vim.keymap.set({ 'x', 'o' }, 'i<tab>', '<plug>(matchup-i%)')
-      -- vim.keymap.set({ 'x', 'o' }, 'o<tab>', '<plug>(matchup-o%)')
-      vim.g.matchup_override_vimtex = 1
-    end,
-  },
-
-  {
     'RRethy/vim-illuminate',
     event = 'BufEnter',
     config = function()
@@ -450,7 +439,11 @@ require('lazy').setup({
     ft = 'typst',
     version = '1.*',
     opts = {
-      open_cmd = 'zathura %s',
+      debug = true,
+      dependencies_bin = {
+        ['tinymist'] = 'tinymist',
+      },
+      -- open_cmd = 'zathura %s',
     }, -- lazy.nvim will implicitly calls `setup {}`
   },
 

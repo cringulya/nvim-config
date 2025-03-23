@@ -13,22 +13,24 @@ local flags = {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local navic = require('nvim-navic')
 
----Common `on_attach` function for LSP servers
----@param client table
----@param buf integer
-local function on_attach(client, buf)
+local function on_attach_formatting(client, buf)
   local symbols_supported =
     client.supports_method('textDocument/documentSymbol')
   if symbols_supported then
     navic.attach(client, buf)
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   end
-  require('lsp_signature').on_attach({
-    hint_prefix = ' ',
-  })
 
   U.disable_formatting(client)
   U.mappings(buf)
+end
+
+---Common `on_attach` function for LSP servers
+---@param client table
+---@param buf integer
+local function on_attach(client, buf)
+  on_attach_formatting(client, buf)
+  U.disable_formatting(client)
 end
 
 -- Disable LSP logging
@@ -171,6 +173,15 @@ lsp.angularls.setup({
     client.server_capabilities.renameProvider = false
     on_attach(client, buf)
   end,
+})
+
+lsp.tinymist.setup({
+  on_attach = on_attach_formatting,
+  settings = {
+    formatterMode = 'typstyle',
+    exportPdf = 'onType',
+    semanticTokens = 'disable',
+  },
 })
 
 lsp.rust_analyzer.setup({

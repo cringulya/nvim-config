@@ -11,7 +11,7 @@ require('cmp').event:on(
 )
 
 npairs.add_rules({
-  Rule(' ', ' ', { 'tex', 'latex' }):with_pair(function(opts)
+  Rule(' ', ' ', { 'tex', 'latex', 'typst' }):with_pair(function(opts)
     local pair = opts.line:sub(opts.col - 1, opts.col)
     return vim.tbl_contains({
       '$' .. '$',
