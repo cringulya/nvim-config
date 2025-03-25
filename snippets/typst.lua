@@ -40,4 +40,82 @@ return {
     i(1),
     t(')'),
   }),
+
+  s(
+    { trig = 'preambule', dscr = 'preambule' },
+    fmta(
+      [[
+      #let conf(title: "", author: "Сон Артём", show_info: true, body) = {
+        set page(
+          paper: "a4",
+          numbering: "1",
+        )
+        set document(author: author, title: title)
+        set text(11pt, font: "New Computer Modern", lang: "ru")
+        show raw: text.with(font: "Iosevka NFM", size: 11pt)
+
+        if show_info {
+          align(center)[ #block(text(20pt, title)) ]
+          pad(
+            top: 0.5em,
+            align(center, text(size: 13pt, author)),
+          )
+          pad(
+            bottom: 1em,
+            align(center, text(size: 13pt, datetime.today().display("[day].[month].[year]"))),
+          )
+        }
+
+        set par(justify: true)
+        body
+      }
+
+      #let question_counter = counter("question_counter")
+      #let part_counter = counter("part_counter")
+      #let disp_question_counter = true
+
+      #let question(title, body) = {
+        question_counter.step()
+        move(dy: .4em, line(length: 100%))
+        show: text.with(weight: "bold")
+        if disp_question_counter [
+          #context question_counter.display("1. ")
+        ]
+        title
+        move(dy: -.4em, line(length: 100%))
+
+        show: text.with(weight: "regular")
+        body
+
+        part_counter.update(0)
+      }
+
+      #let part(body) = {
+        part_counter.step()
+        block[#{
+            show: text.with(weight: "bold")
+            context part_counter.display("(a)")
+            show: text.with(weight: "regular")
+            body
+          }]
+      }
+
+      #let solution(body) = {
+        block[#{
+            show: text.with(weight: "semibold", style: "italic")
+            "Решение:"
+            show: text.with(weight: "regular")
+            body
+            [#v(0.1em)#h(1fr)$square.big$]
+          }]
+      }
+
+      #let indented(body) = pad(
+        left: .2in,
+        body,
+      )
+      ]],
+      {}
+    )
+  ),
 }
