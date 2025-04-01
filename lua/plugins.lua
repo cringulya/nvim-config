@@ -214,7 +214,7 @@ require('lazy').setup({
     dependencies = {
       'JoosepAlviste/nvim-ts-context-commentstring',
       opts = {
-        enable_autocmd = false,
+        enable_autocmd = true,
       },
     },
   },

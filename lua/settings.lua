@@ -31,7 +31,8 @@ o.cmdheight = 0
 -- Better editing experience
 o.expandtab = true
 o.smarttab = true
-o.cindent = true
+o.cindent = false
+o.smartindent = false
 o.autoindent = true
 o.wrap = true
 o.textwidth = 80

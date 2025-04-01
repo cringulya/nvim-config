@@ -20,9 +20,8 @@ local function on_attach_formatting(client, buf)
     navic.attach(client, buf)
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   end
-
-  U.disable_formatting(client)
   U.mappings(buf)
+  U.fmt_on_save(client, buf)
 end
 
 ---Common `on_attach` function for LSP servers
@@ -181,6 +180,8 @@ lsp.tinymist.setup({
     formatterMode = 'typstyle',
     exportPdf = 'onType',
     semanticTokens = 'disable',
+    formatterPrintWidth = 80,
+    outputPath = '$root/$dir/build/$name',
   },
 })
 

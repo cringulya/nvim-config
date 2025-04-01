@@ -41,9 +41,24 @@ function U.mappings(buf)
   map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
   map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   map('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- map('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  -- map('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  -- map('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  map(
+    'n',
+    '<leader>wa',
+    '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>',
+    opts
+  )
+  map(
+    'n',
+    '<leader>wr',
+    '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>',
+    opts
+  )
+  map(
+    'n',
+    '<leader>wl',
+    '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
+    opts
+  )
   -- map('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
   map('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
   map('n', '<leader>.', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)

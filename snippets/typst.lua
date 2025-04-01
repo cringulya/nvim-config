@@ -21,6 +21,18 @@ local types = require('luasnip.util.types')
 local conds = require('luasnip.extras.conditions')
 
 return {
+  s(
+    { trig = 'dm' },
+    fmta(
+      [[
+      $
+        <>
+      $
+      ]],
+      { i(1) }
+    ),
+    {}
+  ),
   s({ trig = 'mm' }, fmta('$<>$', { i(1) }), {}),
   s({ trig = 'ьь' }, fmta('$<>$', { i(1) }), {}),
   s({ trig = '^(.*)__', regTrig = true, snippetType = 'autosnippet' }, {
@@ -51,16 +63,23 @@ return {
           numbering: "1",
         )
         set document(author: author, title: title)
+        set par(
+          spacing: 0.65em,
+          justify: true,
+        )
         set text(11pt, font: "New Computer Modern", lang: "ru")
+
         show raw: text.with(font: "Iosevka NFM", size: 11pt)
+        show heading: set block(above: 1.4em, below: 1em)
 
         if show_info {
           align(center)[ #block(text(20pt, title)) ]
           pad(
-            top: 0.5em,
+            top: 1em,
             align(center, text(size: 13pt, author)),
           )
           pad(
+            top: 1em,
             bottom: 1em,
             align(center, text(size: 13pt, datetime.today().display("[day].[month].[year]"))),
           )
@@ -74,15 +93,15 @@ return {
       #let part_counter = counter("part_counter")
       #let disp_question_counter = true
 
-      #let question(title, body) = {
+      #let problem(title, body) = {
         question_counter.step()
-        move(dy: .4em, line(length: 100%))
+        move(line(length: 100%))
         show: text.with(weight: "bold")
         if disp_question_counter [
           #context question_counter.display("1. ")
         ]
         title
-        move(dy: -.4em, line(length: 100%))
+        move(line(length: 100%))
 
         show: text.with(weight: "regular")
         body
@@ -102,11 +121,11 @@ return {
 
       #let solution(body) = {
         block[#{
-            show: text.with(weight: "semibold", style: "italic")
-            "Решение:"
+            show: text.with(weight: "semibold")
+            emph([Решение: #parbreak()])
             show: text.with(weight: "regular")
             body
-            [#v(0.1em)#h(1fr)$square.big$]
+            [#v(0.1em)#h(1fr)$square$]
           }]
       }
 
