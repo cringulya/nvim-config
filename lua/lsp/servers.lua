@@ -80,6 +80,10 @@ lsp.clangd.setup({
   init_options = {
     fallbackFlags = { '--std=c++23' },
   },
+  cmd = {
+    'clangd',
+    '--header-insertion=never',
+  },
   on_attach = function(client, buf)
     client.documentSignatureHelpProvider = false
     navic.attach(client, buf)
