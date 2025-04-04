@@ -78,7 +78,7 @@ local c = ls.choice_node
 -- clangd
 lsp.clangd.setup({
   init_options = {
-    fallbackFlags = { '--std=c++23' },
+    fallbackFlags = { '--std=c++23', '-DKEKIS' },
   },
   cmd = {
     'clangd',
