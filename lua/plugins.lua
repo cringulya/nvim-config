@@ -414,13 +414,13 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'RRethy/vim-illuminate',
-  --   event = 'BufEnter',
-  --   config = function()
-  --     require('plugins.illuminate')
-  --   end,
-  -- },
+  {
+    'RRethy/vim-illuminate',
+    event = 'BufEnter',
+    config = function()
+      require('plugins.illuminate')
+    end,
+  },
 
   {
     'lervag/vimtex',
