@@ -283,10 +283,10 @@ require('lazy').setup({
   },
 
   {
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     event = 'BufRead',
     config = function()
-      require('lsp.null-ls')
+      require('lsp.none-ls')
     end,
   },
 
@@ -414,13 +414,13 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'RRethy/vim-illuminate',
-    event = 'BufEnter',
-    config = function()
-      require('plugins.illuminate')
-    end,
-  },
+  -- {
+  --   'RRethy/vim-illuminate',
+  --   event = 'BufEnter',
+  --   config = function()
+  --     require('plugins.illuminate')
+  --   end,
+  -- },
 
   {
     'lervag/vimtex',

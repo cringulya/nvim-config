@@ -11,9 +11,9 @@ nls.setup({
     ----------------
     -- FORMATTING --
     ----------------
-    fmt.trim_whitespace.with({
-      filetypes = { 'text', 'zsh', 'toml', 'make', 'conf', 'tmux' },
-    }),
+    -- fmt.trim_whitespace.with({
+    --   filetypes = { 'text', 'zsh', 'toml', 'make', 'conf', 'tmux' },
+    -- }),
     -- NOTE:
     -- 1. both needs to be enabled to so prettier can apply eslint fixes
     -- 2. prettierd should come first to prevent occassional race condition
