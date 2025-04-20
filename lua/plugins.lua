@@ -467,7 +467,6 @@ require('lazy').setup({
     end,
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
-      { 'nvim-treesitter/nvim-treesitter-refactor' },
       { 'windwp/nvim-ts-autotag' },
       { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },

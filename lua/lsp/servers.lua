@@ -13,7 +13,7 @@ local flags = {
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local navic = require('nvim-navic')
 
-local function on_attach_formatting(client, buf)
+local function on_attach(client, buf)
   local symbols_supported =
     client.supports_method('textDocument/documentSymbol')
   if symbols_supported then
@@ -27,8 +27,8 @@ end
 ---Common `on_attach` function for LSP servers
 ---@param client table
 ---@param buf integer
-local function on_attach(client, buf)
-  on_attach_formatting(client, buf)
+local function on_attach_no_format(client, buf)
+  on_attach(client, buf)
   U.disable_formatting(client)
 end
 
@@ -38,10 +38,10 @@ vim.lsp.set_log_level(vim.lsp.log_levels.OFF)
 -- Configuring native diagnostics
 vim.diagnostic.config({
   virtual_text = {
-    source = 'always',
+    source = true,
   },
   float = {
-    source = 'always',
+    source = true,
     focusable = false,
     style = 'minimal',
     border = 'rounded',
@@ -125,7 +125,7 @@ lsp.ruff.setup({
 
 -- Lua
 lsp.lua_ls.setup({
-  on_attach = on_attach,
+  on_attach = on_attach_no_format,
   flags = flags,
   capabilities = capabilities,
   settings = {
@@ -179,7 +179,7 @@ lsp.angularls.setup({
 })
 
 lsp.tinymist.setup({
-  on_attach = on_attach_formatting,
+  on_attach = on_attach,
   settings = {
     formatterMode = 'typstyle',
     exportPdf = 'onType',

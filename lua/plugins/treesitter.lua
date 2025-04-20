@@ -132,13 +132,6 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   },
   -- nvim-treesitter/nvim-treesitter-refactor
-  refactor = {
-    highlight_definitions = {
-      enable = true,
-      clear_on_cursor_move = true,
-    },
-    -- highlight_current_scope = { enable = false },
-  },
   matchup = {
     enable = true,
   },

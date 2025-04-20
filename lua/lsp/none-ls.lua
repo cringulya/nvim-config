@@ -18,34 +18,20 @@ nls.setup({
     -- 1. both needs to be enabled to so prettier can apply eslint fixes
     -- 2. prettierd should come first to prevent occassional race condition
     fmt.prettier,
-    fmt.latexindent.with({
-      extra_args = { '-g', '/dev/null' },
-    }),
-    fmt.eslint_d,
-    -- fmt.prettier.with({
-    --     extra_args = {
-    --         '--tab-width=4',
-    --         '--trailing-comma=es5',
-    --         '--end-of-line=lf',
-    --         '--arrow-parens=always',
-    --     },
-    -- }),
     fmt.stylua,
-    fmt.gofmt,
     fmt.nixpkgs_fmt,
-    fmt.zigfmt,
     fmt.shfmt.with({
       extra_args = { '-i', 4, '-ci', '-sr' },
     }),
     -----------------
     -- DIAGNOSTICS --
     -----------------
-    dgn.shellcheck,
+    -- dgn.shellcheck,
     -- dgn.flake8,
     ------------------
     -- CODE ACTIONS --
     ------------------
-    cda.shellcheck,
+    -- cda.shellcheck,
   },
 
   on_attach = function(client, bufnr)
