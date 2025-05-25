@@ -82,7 +82,6 @@ lsp.clangd.setup({
   },
   cmd = {
     'clangd',
-    '--header-insertion=never',
   },
   on_attach = function(client, buf)
     client.documentSignatureHelpProvider = false

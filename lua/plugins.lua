@@ -266,11 +266,11 @@ require('lazy').setup({
     end,
   },
 
-  -- {
-  --   'ray-x/lsp_signature.nvim',
-  --   event = 'VeryLazy',
-  --   lazy = true,
-  -- },
+  {
+    'ray-x/lsp_signature.nvim',
+    event = 'VeryLazy',
+    lazy = true,
+  },
 
   {
     'neovim/nvim-lspconfig',
@@ -426,7 +426,7 @@ require('lazy').setup({
     'lervag/vimtex',
     ft = 'tex',
     config = function()
-      vim.g.vimtex_compiler_latexmk_engines = { _ = '-lualatex -shell-escape' }
+      vim.g.vimtex_compiler_latexmk_engines = { _ = '-pdflatex -shell-escape' }
       vim.g.vimtex_view_method = 'zathura'
       vim.g.vimtex_compiler_latexmk = {
         out_dir = './build/',

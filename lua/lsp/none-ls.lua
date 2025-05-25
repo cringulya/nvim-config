@@ -17,7 +17,7 @@ nls.setup({
     -- NOTE:
     -- 1. both needs to be enabled to so prettier can apply eslint fixes
     -- 2. prettierd should come first to prevent occassional race condition
-    fmt.prettier,
+    fmt.prettierd,
     fmt.stylua,
     fmt.nixpkgs_fmt,
     fmt.shfmt.with({
