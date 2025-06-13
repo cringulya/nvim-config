@@ -9,6 +9,7 @@ end
 -- Move to the next/previous buffer
 -- map('n', '<TAB>', '<CMD>bn<CR>')
 -- map('n', '<s-TAB>', '<CMD>bp<CR>')
+map({ 'n', 'v' }, 'Q', '<cmd>bd!<cr>')
 map({ 'n', 'v' }, 'H', '0')
 map({ 'n', 'v' }, 'L', '$')
 map({ 'n', 'v' }, 'Р', '0')
