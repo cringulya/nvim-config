@@ -3,6 +3,11 @@ local M = {}
 M.config = {
   lsp = {
     -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+    hover = {
+      enabled = true,
+      silent = true,
+      view = nil, -- or "cmdline", "virtualtext", etc.
+    },
     override = {
       ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
       ['vim.lsp.util.stylize_markdown'] = true,
@@ -34,7 +39,23 @@ M.config = {
 }
 
 M.setup = function()
+  local wk = require('which-key')
   require('noice').setup(M.config)
+
+  wk.add({
+    {
+      '<leader>h',
+      '<cmd>nohlsearch<cr><cmd>NoiceDismiss<cr>',
+      desc = 'No Highlight',
+    },
+    {
+      '<leader>n',
+      function()
+        require('noice').cmd('history')
+      end,
+      desc = 'Noice Messages',
+    },
+  })
 end
 
 return M

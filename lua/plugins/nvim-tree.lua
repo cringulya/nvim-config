@@ -184,7 +184,7 @@ require('nvim-tree').setup({
     update_root = true,
   },
   view = {
-    width = 30,
+    width = 40,
     side = 'left',
   },
   filters = {
@@ -203,7 +203,7 @@ require('nvim-tree').setup({
   },
   renderer = {
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = '└',
         edge = '│',

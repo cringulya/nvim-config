@@ -87,12 +87,12 @@ M.opts = {
 
   indent = { enabled = true },
   input = { enabled = false, prompt_pos = 'left' },
-  notifier = { enabled = true },
-  quickfile = { enabled = true },
+  notifier = { enabled = false },
+  quickfile = { enabled = false },
   scroll = { enabled = false },
   statuscolumn = { enabled = false },
-  words = { enabled = true },
-  scope = { enabled = true },
+  words = { enabled = false },
+  scope = { enabled = false },
 }
 
 M.keys = {

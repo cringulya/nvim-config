@@ -1,4 +1,4 @@
-local map = vim.keymap.set
+local wk = require('which-key')
 
 require('gitsigns').setup({
   on_attach = function(buf)
@@ -9,12 +9,19 @@ require('gitsigns').setup({
     -- map('n', '[c', "&diff ? '[c' : '<CMD>Gitsigns prev_hunk<CR>'", opts)
 
     -- Actions
-    map({ 'n', 'v' }, '<leader>hr', gs.reset_hunk, { buffer = buf })
-    map({ 'n', 'v' }, '<leader>hs', gs.stage_hunk)
-    map('n', '<leader>hS', gs.stage_buffer, { buffer = buf })
-    map('n', '<leader>hp', gs.preview_hunk, { buffer = buf })
 
-    -- Text object
-    map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { buffer = buf })
+    wk.add({
+      { '<leader>gr', gs.reset_hunk, desc = 'Reset hunk' },
+      { '<leader>gs', gs.stage_hunk, desc = 'Stage hunk' },
+      { '<leader>gS', gs.stage_buffer, desc = 'Stage buffer' },
+      { '<leader>gl', gs.blame_line, desc = 'Blame' },
+      { '<leader>gp', gs.preview_hunk, desc = 'Preview Hunk' },
+      { '<leader>gr', gs.reset_hunk, desc = 'Reset Hunk' },
+      { '<leader>gR', gs.reset_buffer, desc = 'Reset Buffer' },
+      { '<leader>gs', gs.stage_hunk, desc = 'Stage Hunk' },
+      { '<leader>gd', '<cmd>Gitsigns diffthis HEAD<cr>', desc = 'Git Diff' },
+      { '<leader>gj', gs.nav_hunk('next'), desc = 'Next Hunk' },
+      { '<leader>gk', gs.nav_hunk('prev'), desc = 'Prev Hunk' },
+    }, opts)
   end,
 })

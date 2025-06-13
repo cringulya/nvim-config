@@ -1,7 +1,5 @@
 local M = {}
 
--- local Log = require "lvim.core.log"
-
 local icons = require('icons')
 
 M.config = {

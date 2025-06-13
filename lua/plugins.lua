@@ -158,13 +158,25 @@ require('lazy').setup({
   -- Editor UI Niceties --
   --------------------------
 
+  -- {
+  --   'folke/snacks.nvim',
+  --   priority = 1000,
+  --   lazy = false,
+  --   opts = require('plugins.snacks').opts,
+  --   keys = require('plugins.snacks').keys,
+  --   init = require('plugins.snacks').init,
+  -- },
+
   {
-    'folke/snacks.nvim',
-    priority = 1000,
-    lazy = false,
-    opts = require('plugins.snacks').opts,
-    keys = require('plugins.snacks').keys,
-    init = require('plugins.snacks').init,
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('plugins.noice').setup()
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
   },
 
   { 'stevearc/dressing.nvim', event = 'VeryLazy' },
@@ -247,7 +259,7 @@ require('lazy').setup({
   {
     'nvim-telescope/telescope.nvim',
     config = function()
-      require('plugins.telescope')
+      require('plugins.telescope').setup()
     end,
     dependencies = {
       {
