@@ -254,12 +254,10 @@ lsp.omnisharp.setup({
 
 ---List of the LSP server that don't need special configuration
 local servers = {
-  'ts_ls', -- Typescript
   'html', -- HTML
   'cssls', -- CSS
   'yamlls', -- YAML
   'cmake',
-  'pyright',
   'texlab',
   'nil_ls',
   'dockerls',
@@ -267,12 +265,27 @@ local servers = {
   'jdtls',
 }
 
+local servers_no_format = {
+  'ts_ls', -- Typescript
+  'pyright',
+}
+
 local conf = {
   flags = flags,
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = on_attach_no_format,
+}
+
+local conf_no_format = {
+  flags = flags,
+  capabilities = capabilities,
+  on_attach = on_attach_no_format,
 }
 
 for _, server in ipairs(servers) do
   lsp[server].setup(conf)
+end
+
+for _, server in ipairs(servers_no_format) do
+  lsp[server].setup(conf_no_format)
 end
