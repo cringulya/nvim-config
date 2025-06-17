@@ -24,6 +24,8 @@ require('lazy').setup({
     },
   },
 
+  { 'nyoom-engineering/oxocarbon.nvim', priority = 1000 },
+
   {
     'rebelot/kanagawa.nvim',
     priority = 1000,
@@ -316,7 +318,6 @@ require('lazy').setup({
 
   {
     'hrsh7th/nvim-cmp',
-    event = 'BufRead',
     config = function()
       require('lsp.nvim-cmp')
     end,
