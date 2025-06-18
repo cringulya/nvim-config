@@ -20,8 +20,8 @@ require('gitsigns').setup({
       { '<leader>gR', gs.reset_buffer, desc = 'Reset Buffer' },
       { '<leader>gs', gs.stage_hunk, desc = 'Stage Hunk' },
       { '<leader>gd', '<cmd>Gitsigns diffthis HEAD<cr>', desc = 'Git Diff' },
-      { '<leader>gj', gs.nav_hunk('next'), desc = 'Next Hunk' },
-      { '<leader>gk', gs.nav_hunk('prev'), desc = 'Prev Hunk' },
+      { '<leader>gj', '<cmd>Gitsigns next_hunk<cr>', desc = 'Next Hunk' },
+      { '<leader>gk', '<cmd>Gitsigns prev_hunk<cr>', desc = 'Prev Hunk' },
     }, opts)
   end,
 })
