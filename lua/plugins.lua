@@ -40,6 +40,12 @@ require('lazy').setup({
     },
   },
 
+  {
+    'scottmckendry/cyberdream.nvim',
+    lazy = false,
+    priority = 1000,
+  },
+
   { 'numToStr/Sakura.nvim', priority = 1000 },
 
   {
@@ -92,6 +98,8 @@ require('lazy').setup({
       })
     end,
   },
+
+  { 'tpope/vim-sleuth' },
 
   {
     'iamcco/markdown-preview.nvim',
@@ -411,7 +419,11 @@ require('lazy').setup({
       -- Setup orgmode
       require('plugins.orgmode').setup()
     end,
-    dependencies = { 'akinsho/org-bullets.nvim' },
+    dependencies = {
+      'akinsho/org-bullets.nvim',
+      'danilshvalov/org-modern.nvim',
+      'lukas-reineke/headlines.nvim',
+    },
   },
 
   {
