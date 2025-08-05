@@ -8,16 +8,21 @@ require('tasks').setup({
       build_type = 'Debug', -- Build type, can be changed using `:Task set_module_param cmake build_type`.
       dap_name = 'lldb', -- DAP configuration name from `require('dap').configurations`. If there is no such configuration, a new one with this name as `type` will be created.
       args = { -- Task default arguments.
-        configure = { '-DCMAKE_EXPORT_COMPILE_COMMANDS=1', '-GNinja' },
+        configure = { '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON', '-GNinja' },
       },
     },
+    clangd_cmdline = {
+          'clangd',
+          '--background-index',
+          '--clang-tidy',
+          '--header-insertion=never',
+          '--completion-style=detailed',
+          '--offset-encoding=utf-8',
+          '-j=4',
+        }, -- command line for invoking clangd - this array will be extended with --compile-commands-dir and --query-driver after each cmake configure with parameters inferred from build_kit, build_type and build_dir
   },
   save_before_run = true, -- If true, all files will be saved before executing a task.
   params_file = 'neovim.json', -- JSON file to store module and task parameters.
-  quickfix = {
-    pos = 'bot', -- Default quickfix position.
-    height = 12, -- Default height.
-  },
   dap_open_command = function()
     return require('dap').repl.open()
   end, -- Command to run after starting DAP session. You can set it to `false` if you don't want to open anything or `require('dapui').open` if you are using https://github.com/rcarriga/nvim-dap-ui

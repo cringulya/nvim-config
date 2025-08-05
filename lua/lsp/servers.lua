@@ -80,9 +80,7 @@ lsp.clangd.setup({
   init_options = {
     fallbackFlags = { '--std=c++23', '-DKEKIS' },
   },
-  cmd = {
-    'clangd',
-  },
+  cmd = require( 'tasks.cmake_utils.cmake_utils' ).currentClangdArgs(),
   on_attach = function(client, buf)
     client.documentSignatureHelpProvider = false
     navic.attach(client, buf)

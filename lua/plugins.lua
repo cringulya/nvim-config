@@ -26,6 +26,8 @@ require('lazy').setup({
 
   { 'nyoom-engineering/oxocarbon.nvim', priority = 1000 },
 
+  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+
   {
     'rebelot/kanagawa.nvim',
     priority = 1000,
@@ -301,6 +303,11 @@ require('lazy').setup({
   },
 
   {
+    "mason-org/mason.nvim",
+    opts = {}
+  },
+
+  {
     'ray-x/lsp_signature.nvim',
     event = 'VeryLazy',
     lazy = true,
@@ -393,23 +400,23 @@ require('lazy').setup({
     end,
   },
 
-  {
-    'nvim-neorg/neorg',
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-    version = '*', -- Pin Neorg to the latest stable release
-    config = true,
-    init = function()
-      require('neorg').setup({
-        load = {
-          ['core.defaults'] = {},
-          ['core.concealer'] = {}, -- We added this line!
-          ['core.export'] = {},
-          ['core.completion'] = {},
-          ['core.latex.renderer'] = {},
-        },
-      })
-    end,
-  },
+  -- {
+  --   'nvim-neorg/neorg',
+  --   lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+  --   version = '*', -- Pin Neorg to the latest stable release
+  --   config = true,
+  --   init = function()
+  --     require('neorg').setup({
+  --       load = {
+  --         ['core.defaults'] = {},
+  --         ['core.concealer'] = {}, -- We added this line!
+  --         ['core.export'] = {},
+  --         ['core.completion'] = {},
+  --         ['core.latex.renderer'] = {},
+  --       },
+  --     })
+  --   end,
+  -- },
 
   {
     'nvim-orgmode/orgmode',
@@ -484,10 +491,10 @@ require('lazy').setup({
     }, -- lazy.nvim will implicitly calls `setup {}`
   },
 
-  {
-    '3rd/image.nvim',
-    opts = {},
-  },
+  -- {
+  --   '3rd/image.nvim',
+  --   opts = {},
+  -- },
 
   { 'lukas-reineke/virt-column.nvim', opts = {} },
 
