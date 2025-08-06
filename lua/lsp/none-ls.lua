@@ -6,6 +6,11 @@ local dgn = nls.builtins.diagnostics
 local cda = nls.builtins.code_actions
 
 -- Configuring null-ls
+
+local no_fmt_on_save = {
+  ['smth'] = true,
+}
+
 nls.setup({
   sources = {
     ----------------
@@ -23,9 +28,11 @@ nls.setup({
     fmt.shfmt.with({
       extra_args = { '-i', 4, '-ci', '-sr' },
     }),
+    fmt.clang_format,
     -----------------
     -- DIAGNOSTICS --
     -----------------
+    dgn.cmake_lint,
     -- dgn.shellcheck,
     -- dgn.flake8,
     ------------------
@@ -35,7 +42,9 @@ nls.setup({
   },
 
   on_attach = function(client, bufnr)
-    U.fmt_on_save(client, bufnr)
+    if not no_fmt_on_save[client.name] then
+      U.fmt_on_save(client, bufnr)
+    end
     U.mappings(bufnr)
   end,
 })

@@ -21,13 +21,17 @@ local function on_attach(client, buf)
     vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
   end
   U.mappings(buf)
+end
+
+local function on_attach_fmt_save(client, buf)
+  on_attach(client, buf)
   U.fmt_on_save(client, buf)
 end
 
 ---Common `on_attach` function for LSP servers
 ---@param client table
 ---@param buf integer
-local function on_attach_no_format(client, buf)
+local function on_attach_no_fmt(client, buf)
   on_attach(client, buf)
   U.disable_formatting(client)
 end
@@ -80,18 +84,15 @@ lsp.clangd.setup({
   init_options = {
     fallbackFlags = { '--std=c++23', '-DKEKIS' },
   },
-  cmd = require( 'tasks.cmake_utils.cmake_utils' ).currentClangdArgs(),
+  cmd = require('tasks.cmake_utils.cmake_utils').currentClangdArgs(),
   on_attach = function(client, buf)
-    client.documentSignatureHelpProvider = false
-    navic.attach(client, buf)
-    U.mappings(buf)
+    on_attach_no_fmt(client, buf)
     vim.keymap.set(
       'n',
       '<leader>lh',
       '<cmd>ClangdSwitchSourceHeader<cr>',
       { buffer = buf }
     )
-    U.fmt_on_save(client, buf)
   end,
   capabilities = capabilities,
 })
@@ -101,28 +102,17 @@ lsp.ruff.setup({
   init_options = {
     settings = {
       logLevel = 'debug',
+      lineLength = 120,
     },
   },
-  on_attach = function(client, buf)
-    local symbols_supported =
-      client.supports_method('textDocument/documentSymbol')
-    if symbols_supported then
-      navic.attach(client, buf)
-      vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-    end
-    require('lsp_signature').on_attach({
-      hint_prefix = ' ',
-    })
-    U.mappings(buf)
-    U.fmt_on_save(client, buf)
-  end,
+  on_attach = on_attach_fmt_save,
   flags = flags,
   capabilities = capabilities,
 })
 
 -- Lua
 lsp.lua_ls.setup({
-  on_attach = on_attach_no_format,
+  on_attach = on_attach_no_fmt,
   flags = flags,
   capabilities = capabilities,
   settings = {
@@ -163,20 +153,8 @@ lsp.jsonls.setup({
   },
 })
 
--- Angular
--- 1. install @angular/language-server globally
--- 2. install @angular/language-service inside project as dev dep
-lsp.angularls.setup({
-  flags = flags,
-  capabilities = capabilities,
-  on_attach = function(client, buf)
-    client.server_capabilities.renameProvider = false
-    on_attach(client, buf)
-  end,
-})
-
 lsp.tinymist.setup({
-  on_attach = on_attach,
+  on_attach = on_attach_fmt_save,
   settings = {
     formatterMode = 'typstyle',
     exportPdf = 'onType',
@@ -187,7 +165,7 @@ lsp.tinymist.setup({
 })
 
 lsp.rust_analyzer.setup({
-  on_attach = on_attach,
+  on_attach = on_attach_fmt_save,
   settings = {
     ['rust-analyzer'] = {
       imports = {
@@ -206,48 +184,6 @@ lsp.rust_analyzer.setup({
       },
     },
   },
-})
-
-lsp.omnisharp.setup({
-  cmd = {
-    '/Users/artemson/.local/share/nvim/mason/bin/omnisharp-mono',
-  },
-  on_attach = on_attach,
-
-  -- Enables support for reading code style, naming convention and analyzer
-  -- settings from .editorconfig.
-  enable_editorconfig_support = true,
-
-  -- If true, MSBuild project system will only load projects for files that
-  -- were opened in the editor. This setting is useful for big C# codebases
-  -- and allows for faster initialization of code navigation features only
-  -- for projects that are relevant to code that is being edited. With this
-  -- setting enabled OmniSharp may load fewer projects and may thus display
-  -- incomplete reference lists for symbols.
-  enable_ms_build_load_projects_on_demand = false,
-
-  -- Enables support for roslyn analyzers, code fixes and rulesets.
-  enable_roslyn_analyzers = false,
-
-  -- Specifies whether 'using' directives should be grouped and sorted during
-  -- document formatting.
-  organize_imports_on_format = false,
-
-  -- Enables support for showing unimported types and unimported extension
-  -- methods in completion lists. When committed, the appropriate using
-  -- directive will be added at the top of the current file. This option can
-  -- have a negative impact on initial completion responsiveness,
-  -- particularly for the first few completion sessions after opening a
-  -- solution.
-  enable_import_completion = true,
-
-  -- Specifies whether to include preview versions of the .NET SDK when
-  -- determining which version to use for project loading.
-  sdk_include_prereleases = true,
-
-  -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
-  -- true
-  analyze_open_documents_only = false,
 })
 
 ---List of the LSP server that don't need special configuration
@@ -271,13 +207,13 @@ local servers_no_format = {
 local conf = {
   flags = flags,
   capabilities = capabilities,
-  on_attach = on_attach_no_format,
+  on_attach = on_attach,
 }
 
 local conf_no_format = {
   flags = flags,
   capabilities = capabilities,
-  on_attach = on_attach_no_format,
+  on_attach = on_attach_no_fmt,
 }
 
 for _, server in ipairs(servers) do
