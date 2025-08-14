@@ -32,8 +32,8 @@ end
 ---@param client table
 ---@param buf integer
 local function on_attach_no_fmt(client, buf)
-  on_attach(client, buf)
   U.disable_formatting(client)
+  on_attach(client, buf)
 end
 
 -- Disable LSP logging
@@ -103,9 +103,13 @@ lsp.ruff.setup({
     settings = {
       logLevel = 'debug',
       lineLength = 120,
+      quoteStyle = 'single',
+      lint = {
+        enable = true,
+      },
     },
   },
-  on_attach = on_attach_fmt_save,
+  on_attach = on_attach,
   flags = flags,
   capabilities = capabilities,
 })
@@ -138,6 +142,23 @@ lsp.lua_ls.setup({
       -- a randomized but unique identifier
       telemetry = {
         enable = false,
+      },
+    },
+  },
+})
+
+lsp.pyright.setup({
+  on_attach = on_attach_no_fmt,
+  settings = {
+    python = {
+      analysis = {
+        extraPaths = {
+          '~/SBISPlatformSDK/SBISPlatformSDK_253200/etc/stubs/',
+          '~/SBISPlatformSDK/SBISPlatformSDK_254100/etc/stubs/',
+          '~/SBISPlatformSDK/SBISPlatformSDK_255100/etc/stubs/',
+        }, -- your stubs directory
+        typeCheckingMode = 'strict',
+        autoImportCompletions = true,
       },
     },
   },
@@ -200,8 +221,7 @@ local servers = {
 }
 
 local servers_no_format = {
-  'ts_ls', -- Typescript
-  'pyright',
+  'ts_ls',
 }
 
 local conf = {

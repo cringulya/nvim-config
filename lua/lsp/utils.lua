@@ -27,7 +27,7 @@ end
 ---@see https://github.com/jose-elias-alvarez/null-ls.nvim/wiki/Avoiding-LSP-formatting-conflicts
 function U.disable_formatting(client)
   client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = true
+  client.server_capabilities.documentRangeFormattingProvider = false
 end
 
 ---Creates LSP mappings

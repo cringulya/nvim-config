@@ -33,6 +33,7 @@ require('project_nvim').setup({
     '.gradle',
     'Makefile',
     'package.json',
+    'sbis_root',
     '.stylua.toml',
     'requirements.txt',
     'main.py',
