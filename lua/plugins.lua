@@ -26,7 +26,7 @@ require('lazy').setup({
 
   { 'nyoom-engineering/oxocarbon.nvim', priority = 1000 },
 
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
 
   { 'projekt0n/github-nvim-theme', name = 'github-theme' },
 
@@ -172,15 +172,6 @@ require('lazy').setup({
   -- Editor UI Niceties --
   --------------------------
 
-  -- {
-  --   'folke/snacks.nvim',
-  --   priority = 1000,
-  --   lazy = false,
-  --   opts = require('plugins.snacks').opts,
-  --   keys = require('plugins.snacks').keys,
-  --   init = require('plugins.snacks').init,
-  -- },
-
   {
     'folke/noice.nvim',
     event = 'VeryLazy',
@@ -305,8 +296,8 @@ require('lazy').setup({
   },
 
   {
-    "mason-org/mason.nvim",
-    opts = {}
+    'mason-org/mason.nvim',
+    opts = {},
   },
 
   {
@@ -401,24 +392,6 @@ require('lazy').setup({
       require('plugins.haskell').setup()
     end,
   },
-
-  -- {
-  --   'nvim-neorg/neorg',
-  --   lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-  --   version = '*', -- Pin Neorg to the latest stable release
-  --   config = true,
-  --   init = function()
-  --     require('neorg').setup({
-  --       load = {
-  --         ['core.defaults'] = {},
-  --         ['core.concealer'] = {}, -- We added this line!
-  --         ['core.export'] = {},
-  --         ['core.completion'] = {},
-  --         ['core.latex.renderer'] = {},
-  --       },
-  --     })
-  --   end,
-  -- },
 
   {
     'nvim-orgmode/orgmode',
