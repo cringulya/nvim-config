@@ -16,7 +16,7 @@ require('code_runner').setup({
     r = 'Rscript $dir/$fileName',
     typescript = 'deno run',
     julia = 'julia $dir/$fileName',
-    rust = 'cd $dir && rustc $fileName && $dir/$fileNameWithoutExt',
+    rust = 'cargo run',
     cpp = 'cd $dir && mkdir -p build && g++ -g -fsanitize=address -std=c++23 -DKEKIS -Wall -Wextra -Wshadow -Wno-sign-compare  -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',
     c = 'cd $dir && mkdir -p build && gcc -fsanitize=address -Wall -Wextra -Wshadow -O2 -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',
     swift = 'swift $dir/$fileName',

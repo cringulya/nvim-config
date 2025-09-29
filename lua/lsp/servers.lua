@@ -189,6 +189,9 @@ lsp.rust_analyzer.setup({
   on_attach = on_attach_fmt_save,
   settings = {
     ['rust-analyzer'] = {
+      check = {
+        command = 'clippy',
+      },
       imports = {
         granularity = {
           group = 'module',
@@ -218,6 +221,7 @@ local servers = {
   'dockerls',
   'marksman',
   'jdtls',
+  'gopls',
 }
 
 local servers_no_format = {
@@ -227,7 +231,7 @@ local servers_no_format = {
 local conf = {
   flags = flags,
   capabilities = capabilities,
-  on_attach = on_attach,
+  on_attach = on_attach_fmt_save,
 }
 
 local conf_no_format = {

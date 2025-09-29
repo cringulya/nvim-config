@@ -40,9 +40,8 @@ cmp.setup({
       cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
     end, { 'i', 's' }),
 
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
 
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
