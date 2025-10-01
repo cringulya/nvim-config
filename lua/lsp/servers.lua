@@ -102,14 +102,14 @@ lsp.ruff.setup({
   init_options = {
     settings = {
       logLevel = 'debug',
-      lineLength = 120,
+      lineLength = 80,
       quoteStyle = 'single',
       lint = {
         enable = true,
       },
     },
   },
-  on_attach = on_attach,
+  on_attach = on_attach_fmt_save,
   flags = flags,
   capabilities = capabilities,
 })
