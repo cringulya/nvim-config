@@ -20,5 +20,6 @@ require('code_runner').setup({
     cpp = 'cd $dir && mkdir -p build && g++ -g -fsanitize=address -std=c++23 -DKEKIS -Wall -Wextra -Wshadow -Wno-sign-compare  -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',
     c = 'cd $dir && mkdir -p build && gcc -fsanitize=address -Wall -Wextra -Wshadow -O2 -o ./build/$fileNameWithoutExt $fileName && ./build/$fileNameWithoutExt',
     swift = 'swift $dir/$fileName',
+    go = 'go run $dir/$fileName',
   },
 })

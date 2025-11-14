@@ -7,15 +7,15 @@ local U = {}
 ---@param buf integer
 function U.fmt_on_save(client, buf)
   if client.supports_method('textDocument/formatting') then
-    vim.api.nvim_create_augroup('FORMATTING', { clear = true })
+    local group = vim.api.nvim_create_augroup('FORMATTING', { clear = true })
 
     vim.api.nvim_create_autocmd('BufWritePre', {
-      group = vim.api.nvim_create_augroup('FORMATTING', { clear = true }),
+      group = group,
       buffer = buf,
       callback = function()
         vim.lsp.buf.format({
           timeout_ms = 3000,
-          buffer = buf,
+          bufnr = buf,
         })
       end,
     })

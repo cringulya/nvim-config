@@ -106,12 +106,13 @@ require('lazy').setup({
   { 'tpope/vim-sleuth' },
 
   {
-    'iamcco/markdown-preview.nvim',
-    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
-    lazy = true,
-    ft = { 'markdown' },
-    build = function()
-      vim.fn['mkdp#util#install']()
+    'toppair/peek.nvim',
+    event = { 'VeryLazy' },
+    build = 'deno task --quiet build:fast',
+    config = function()
+      require('peek').setup()
+      vim.api.nvim_create_user_command('PeekOpen', require('peek').open, {})
+      vim.api.nvim_create_user_command('PeekClose', require('peek').close, {})
     end,
   },
 
@@ -127,10 +128,10 @@ require('lazy').setup({
     config = function()
       require('render-markdown').setup({
         file_types = { 'markdown', 'quarto' },
-        anti_conceal = { enabled = false },
+        anti_conceal = { enabled = true },
         win_options = {
           concealcursor = {
-            rendered = 'nci',
+            rendered = 'ci',
           },
         },
       })
