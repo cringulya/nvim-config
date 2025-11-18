@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   {
     'folke/tokyonight.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     opts = {
       style = 'night',
@@ -26,9 +26,17 @@ require('lazy').setup({
 
   { 'nyoom-engineering/oxocarbon.nvim', priority = 1000 },
 
-  { 'catppuccin/nvim', name = 'catppuccin', priority = 1000 },
+  { 'spaceduck-theme/nvim',             name = 'spaceduck' },
 
-  { 'projekt0n/github-nvim-theme', name = 'github-theme' },
+  { 'catppuccin/nvim',                  name = 'catppuccin',  priority = 1000 },
+
+  { 'projekt0n/github-nvim-theme',      name = 'github-theme' },
+
+  {
+    'vague-theme/vague.nvim',
+    lazy = false,
+    priority = 1000,
+  },
 
   {
     'rebelot/kanagawa.nvim',
@@ -42,6 +50,12 @@ require('lazy').setup({
       contrast = 'hard',
       transparent_mode = true,
     },
+  },
+
+  {
+    'olivercederborg/poimandres.nvim',
+    lazy = false,
+    priority = 1000,
   },
 
   {
@@ -69,7 +83,7 @@ require('lazy').setup({
     end,
   },
 
-  { 'folke/neodev.nvim', lazy = true },
+  { 'folke/neodev.nvim',    lazy = true },
 
   {
     'folke/which-key.nvim',
@@ -141,7 +155,7 @@ require('lazy').setup({
   {
     'vhyrro/luarocks.nvim',
     priority = 1000, -- We'd like this plugin to load first out of the rest
-    config = true, -- This automatically runs `require("luarocks-nvim").setup()`
+    config = true,   -- This automatically runs `require("luarocks-nvim").setup()`
     opts = {
       rocks = { 'magick' },
     },
@@ -185,7 +199,7 @@ require('lazy').setup({
     },
   },
 
-  { 'stevearc/dressing.nvim', event = 'VeryLazy' },
+  { 'stevearc/dressing.nvim',      event = 'VeryLazy' },
 
   { 'nvim-tree/nvim-web-devicons', lazy = true },
 
@@ -352,7 +366,7 @@ require('lazy').setup({
     },
   },
 
-  { 'folke/trouble.nvim', opts = {}, cmd = 'Trouble' },
+  { 'folke/trouble.nvim',          opts = {}, cmd = 'Trouble' },
 
   -- SchemaStore
   {
@@ -367,8 +381,8 @@ require('lazy').setup({
   {
     'NeogitOrg/neogit',
     dependencies = {
-      'nvim-lua/plenary.nvim', -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
+      'nvim-lua/plenary.nvim',         -- required
+      'sindrets/diffview.nvim',        -- optional - Diff integration
       'nvim-telescope/telescope.nvim', -- optional
     },
     config = true,
@@ -388,7 +402,7 @@ require('lazy').setup({
   {
     'mrcjkb/haskell-tools.nvim',
     version = '^4', -- Recommended
-    lazy = false, -- This plugin is already lazy
+    lazy = false,   -- This plugin is already lazy
     config = function()
       require('plugins.haskell').setup()
     end,
@@ -405,7 +419,6 @@ require('lazy').setup({
     dependencies = {
       'akinsho/org-bullets.nvim',
       'danilshvalov/org-modern.nvim',
-      'lukas-reineke/headlines.nvim',
     },
   },
 
@@ -473,6 +486,11 @@ require('lazy').setup({
   -- },
 
   { 'lukas-reineke/virt-column.nvim', opts = {} },
+
+  {
+    'olimorris/persisted.nvim',
+    opts = { use_git_branch = true },
+  },
 
   -----------------------------------
   -- Treesitter: Better Highlights --
