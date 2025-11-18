@@ -5,21 +5,21 @@ require('tasks').setup({
     cmake = {
       cmd = 'cmake', -- CMake executable to use, can be changed using `:Task set_module_param cmake cmd`.
       build_dir = tostring(Path:new('{cwd}', 'build', '{build_type}')), -- Build directory. The expressions `{cwd}`, `{os}` and `{build_type}` will be expanded with the corresponding text values. Could be a function that return the path to the build directory.
-      build_type = 'Debug', -- Build type, can be changed using `:Task set_module_param cmake build_type`.
+      build_type = 'RelWithDebInfo', -- Build type, can be changed using `:Task set_module_param cmake build_type`.
       dap_name = 'lldb', -- DAP configuration name from `require('dap').configurations`. If there is no such configuration, a new one with this name as `type` will be created.
       args = { -- Task default arguments.
         configure = { '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON', '-GNinja' },
       },
     },
     clangd_cmdline = {
-          'clangd',
-          '--background-index',
-          '--clang-tidy',
-          '--header-insertion=never',
-          '--completion-style=detailed',
-          '--offset-encoding=utf-8',
-          '-j=4',
-        }, -- command line for invoking clangd - this array will be extended with --compile-commands-dir and --query-driver after each cmake configure with parameters inferred from build_kit, build_type and build_dir
+      'clangd',
+      '--background-index',
+      '--clang-tidy',
+      '--header-insertion=never',
+      '--completion-style=detailed',
+      '--offset-encoding=utf-8',
+      '-j=4',
+    }, -- command line for invoking clangd - this array will be extended with --compile-commands-dir and --query-driver after each cmake configure with parameters inferred from build_kit, build_type and build_dir
   },
   save_before_run = true, -- If true, all files will be saved before executing a task.
   params_file = 'neovim.json', -- JSON file to store module and task parameters.
