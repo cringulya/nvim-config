@@ -426,7 +426,7 @@ require('lazy').setup({
     'mfussenegger/nvim-dap',
     event = 'VeryLazy',
     config = function()
-      require('plugins.dap')
+      -- require('plugins.dap')
     end,
   },
 

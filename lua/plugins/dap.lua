@@ -6,7 +6,7 @@ require('dap-python').setup('/opt/python3.11/bin/python3.11')
 dap.adapters.lldb = {
   type = 'executable',
   command = vim.fn.stdpath('data')
-    .. '/mason/packages/codelldb/extension/adapter/codelldb',
+      .. '/mason/packages/codelldb/extension/adapter/codelldb',
   name = 'lldb',
 }
 
@@ -37,7 +37,7 @@ dap.configurations.cpp = {
     request = 'launch',
     program = vim.fn.getcwd() .. '/build/relwithdebinfo/bin/test_executor_core',
     cwd = vim.fn.getcwd()
-      .. '/build/relwithdebinfo/tests/executor-core-tests/run',
+        .. '/build/relwithdebinfo/tests/executor-core-tests/run',
   },
   {
     name = 'Select and attach to process',
