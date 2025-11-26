@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Auto-format ("lint") on save.
     -- Usually not needed if server supports "textDocument/willSaveWaitUntil".
     if
-      not client:supports_method('textDocument/willSaveWaitUntil')
-      and client:supports_method('textDocument/formatting')
+        not client:supports_method('textDocument/willSaveWaitUntil')
+        and client:supports_method('textDocument/formatting')
     then
       vim.api.nvim_create_autocmd('BufWritePre', {
         group = vim.api.nvim_create_augroup('my.lsp', { clear = false }),
@@ -62,11 +62,11 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
 })
 
 vim.lsp.handlers['textDocument/signatureHelp'] =
-  vim.lsp.with(vim.lsp.handlers.signature_help, {
-    focusable = false,
-    style = 'minimal',
-    border = 'rounded',
-  })
+    vim.lsp.with(vim.lsp.handlers.signature_help, {
+      focusable = false,
+      style = 'minimal',
+      border = 'rounded',
+    })
 
 local ls = require('luasnip')
 local s = ls.snippet
@@ -171,7 +171,7 @@ vim.lsp.enable('tinymist', {
   },
 })
 
-vim.lsp.enable('rust-analyzer', {
+vim.lsp.enable('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
       check = {
@@ -197,8 +197,8 @@ vim.lsp.enable('rust-analyzer', {
 
 ---List of the LSP server that don't need special configuration
 local servers = {
-  'html', -- HTML
-  'cssls', -- CSS
+  'html',   -- HTML
+  'cssls',  -- CSS
   'yamlls', -- YAML
   'cmake',
   'texlab',
