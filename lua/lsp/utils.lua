@@ -35,11 +35,11 @@ end
 function U.mappings(buf)
   local opts = { buffer = buf }
 
-  map('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  map('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  map('n', 'gD', '<cmd>Trouble lsp_declarations focus=true<cr>', opts)
+  map('n', 'gd', '<cmd>Trouble lsp_definitions focus=true<cr>', opts)
   map('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  map('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  map('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  map('n', 'gi', '<cmd>Trouble lsp_implementations focus=true<cr>', opts)
+  map('n', 'gr', '<cmd>Trouble lsp_references focus=true<cr>', opts)
   map('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
   map(
     'n',

@@ -171,7 +171,7 @@ vim.lsp.enable('tinymist', {
   },
 })
 
-vim.lsp.enable('rust_analyzer', {
+vim.lsp.config('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
       check = {
@@ -192,8 +192,19 @@ vim.lsp.enable('rust_analyzer', {
         enable = true,
       },
     },
+    -- The following keys were redundant as they are inside the main 'rust-analyzer' table above
+    -- cargo = {
+    --   buildScripts = {
+    --     enable = true,
+    --   },
+    -- },
+    -- procMacro = {
+    --   enable = true,
+    -- },
   },
 })
+
+vim.lsp.enable('rust_analyzer')
 
 ---List of the LSP server that don't need special configuration
 local servers = {
