@@ -141,12 +141,17 @@ require('lazy').setup({
     opts = {},
     config = function()
       require('render-markdown').setup({
+        preset = 'obsidian',
         file_types = { 'markdown', 'quarto' },
         anti_conceal = { enabled = true },
         win_options = {
           concealcursor = {
             rendered = 'ci',
           },
+        },
+        heading = {
+          render_modes = true,
+          border_virtual = false,
         },
       })
     end,
