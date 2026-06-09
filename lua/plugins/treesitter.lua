@@ -1,20 +1,3 @@
--- Treesitter folds
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevelstart = 89
-vim.g.skip_ts_context_commentstring_module = true
-
-local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
-
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ 'n', 'x', 'o' }, ']]', ts_repeat_move.repeat_last_move_next)
-vim.keymap.set(
-  { 'n', 'x', 'o' },
-  '[[',
-  ts_repeat_move.repeat_last_move_previous
-)
-
 require('nvim-treesitter.configs').setup({
   -- nvim-treesitter/nvim-treesitter (self config)
   auto_install = true,
@@ -136,3 +119,20 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   },
 })
+
+local ts_repeat_move = require('nvim-treesitter.textobjects.repeatable_move')
+
+-- Repeat movement with ; and ,
+-- ensure ; goes forward and , goes backward regardless of the last direction
+vim.keymap.set({ 'n', 'x', 'o' }, ']]', ts_repeat_move.repeat_last_move_next)
+vim.keymap.set(
+  { 'n', 'x', 'o' },
+  '[[',
+  ts_repeat_move.repeat_last_move_previous
+)
+
+-- Treesitter folds
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.o.foldlevelstart = 89
+vim.g.skip_ts_context_commentstring_module = true
